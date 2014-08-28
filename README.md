@@ -2,7 +2,7 @@ FEDS
 ====
 
 Personal FrontEnd Design Starter for building web apps, utilizing Angular, Gulp, Browserify, SASS, BEM and Flexbox.
-Borrowing from [Google Web Starter Kit (Beta)](http://developers.google.com/web/starter-kit) and [angularjs-gulp-browserify-boilerplate](github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate) utilizing best [AngularJS practices](github.com/toddmotto/angularjs-styleguide).
+Borrowing from [Google Web Starter Kit (Beta)](http://developers.google.com/web/starter-kit) and [angularjs-gulp-browserify-boilerplate](http://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate) utilizing best [AngularJS practices](github.com/toddmotto/angularjs-styleguide).
 
 ---
 
