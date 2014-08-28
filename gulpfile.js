@@ -35,6 +35,24 @@ var gulp          = require('gulp'),
     pagespeed     = require('psi'),
     reload        = browserSync.reload;
 
+var AUTOPREFIXER_BROWSERS = [
+  'ie >= 10',
+  'ie_mob >= 10',
+  'ff >= 30',
+  'chrome >= 34',
+  'safari >= 7',
+  'opera >= 23',
+  'ios >= 7',
+  'android >= 4.4',
+  'bb >= 10'
+];
+
+var SassOptions = {
+  sourcemap: true,
+  style: 'expanded',
+  precision: 10
+};
+
 // read bower.json and get dependencies' package ids
 var bowerManifest = {};
 try {
@@ -52,56 +70,6 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
-
-// gulp.task('libs', function() {
-//
-//   var b = watchify(browserify();
-//
-//   // get all bower components ids and resolve the ids to their 'endpoint', which we need for require()
-//   bowerPackageIds.forEach(function (id) {
-//     b.require(bowerResolve.fastReadSync(id), { expose: id });
-//   });
-//
-//   b.transform({
-//     global: true
-//   }, ngAnnotate);
-//
-//   b.transform({
-//     global: true
-//   }, uglifyify);
-//
-//   return b.bundle()
-//     .pipe(source('libs.js'))
-//     .pipe($.streamify($.rename({suffix: '.min'})))
-//     .pipe(gulp.dest('.tmp/scripts'));
-// });
-//
-//
-// /**
-//  * Browserify using your main application entry point, 'external'ising the bower components on prebundle
-//  */
-// gulp.task('bundle-js', function() {
-//
-//   var b = watchify(browserify('./app/scripts/main.js');
-// //
-//   // get all bower components ids
-//   bowerPackageIds.forEach(function (id) {
-//     b.external(id);
-//   });
-//
-//   b.transform({
-//     global: true
-//   }, ngAnnotate);
-//
-//   b.transform({
-//     global: true
-//   }, uglifyify);
-//
-//   return b.bundle()
-//     .pipe(source('main.js'))
-//     .pipe($.streamify($.rename({suffix: '.min'})))
-//     .pipe(gulp.dest('.tmp/scripts'));
-// });
 
 // Watchify js
 var dist = false; // set to true when `default` task is run
@@ -136,7 +104,7 @@ gulp.task('libs', function() {
       .pipe(source('libs.js'))
       .pipe($.streamify($.rename({suffix: '.min'})))
       // destination changes when `dist` is set to true
-      .pipe(gulp.dest( dist ? '.tmp/scripts' : './app/scripts/' ))
+      .pipe(gulp.dest( dist ? './dist/scripts' : '.tmp/scripts/' ))
       .pipe(reload({stream: true, once: true}));
   };
 
@@ -176,7 +144,7 @@ gulp.task('bundle-js', function() {
       .pipe(source('main.js'))
       .pipe($.streamify($.rename({suffix: '.min'})))
       // destination changes when `dist` is set to true
-      .pipe(gulp.dest( dist ? '.tmp/scripts' : './app/scripts/' ))
+      .pipe(gulp.dest( dist ? './dist/scripts' : '.tmp/scripts' ))
       .pipe(reload({stream: true, once: true}));
   };
 
@@ -184,18 +152,6 @@ gulp.task('bundle-js', function() {
   b.on('update', bundle);
   return bundle();
 });
-
-var SassOptions = {
-  sourcemap: true,
-  style: 'compact',
-  precision: 10
-};
-// set minifier to false to keep Sass sourcemaps support
-var PleeeaseOptions = {
-  optimizers: {
-    minifier: false
-  }
-};
 
 // Compile and Automatically Prefix Stylesheets
 gulp.task('styles', function() {
@@ -207,9 +163,8 @@ gulp.task('styles', function() {
     .pipe($.if('*.scss', $.rubySass(SassOptions)
     .on('error', console.error.bind(console))
     ))
-    .pipe($.pleeease(PleeeaseOptions))
-    .pipe($.rename({suffix: '.min'}))
-    .pipe(gulp.dest('.tmp/styles'))
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe(gulp.dest( dist ? './dist/styles' : '.tmp/styles' ))
     .pipe($.size({title: 'styles'}));
 
 });
@@ -228,9 +183,9 @@ gulp.task('images', function () {
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function () {
   return gulp.src([
-    'app/**/*',
+    'app/index.html',
     '!app/views/*.html',
-    '!app/*.html'
+    '!app/scripts/**/*.js'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'))
@@ -244,27 +199,44 @@ gulp.task('fonts', function () {
     .pipe($.size({title: 'fonts'}));
 });
 
-// Views task
-gulp.task('views', function() {
+// Scan Your HTML For Assets & Optimize Them
+gulp.task('html', function () {
+  var assets = $.useref.assets({searchPath: '{.tmp,app,dist}'});
+
+  return gulp.src('app/**/*.html')
+    .pipe(assets)
+    // Concatenate And Minify JavaScript
+    .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
+    // Concatenate And Minify Styles
+    .pipe($.if('*.css', $.csso()))
+    .pipe(assets.restore())
+    .pipe($.useref())
+    // Output Files
+    .pipe(gulp.dest('dist'))
+    .pipe($.size({title: 'html'}));
+});
+
+// Angular template cache task
+gulp.task('templateCache', function() {
 
   // Put our index.html in the dist folder
-  gulp.src('app/index.html')
-    .pipe(gulp.dest('dist/'));
+  // gulp.src('app/index.html')
+  //   .pipe(gulp.dest('dist/'));
 
   // Process any other view files from app/views
   return gulp.src('app/views/**/*.html')
     .pipe($.angularTemplatecache({
       standalone: true
   }))
-    .pipe(gulp.dest('app/scripts'))
-    .pipe($.size({title: 'views'}));
+    .pipe(gulp.dest('app/scripts/.templates'))
+    .pipe($.size({title: 'Angular templateCache'}));
 });
 
 // Clean Output Directory
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean', del.bind(null, ['.tmp', 'dist', 'app/scripts/templates']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'views', 'libs', 'bundle-js'], function () {
+gulp.task('serve', ['styles', 'templateCache', 'libs', 'bundle-js'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
@@ -276,7 +248,7 @@ gulp.task('serve', ['styles', 'views', 'libs', 'bundle-js'], function () {
     }
   });
 
-  gulp.watch(['app/**/*.html'], ['views', reload]);
+  gulp.watch(['app/**/*.html'], ['views', 'html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint', 'libs', 'bundle-js', reload]);
   gulp.watch(['app/images/**/*'], reload);
@@ -300,7 +272,7 @@ gulp.task('serve:dist', ['default'], function () {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   dist = true; // change Watchify's build destination
-  runSequence('styles', 'views', 'libs', 'bundle-js', ['jshint', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', 'templateCache', 'libs', 'bundle-js', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights

@@ -21,4 +21,4 @@ components
 .tmp
 dist
 build
-templates.js
+.templates

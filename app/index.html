@@ -6,13 +6,17 @@
       <title ng-bind="pageTitle"></title>
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width">
-
-      <link rel="stylesheet" href="styles/app.min.css">
+      <!-- build:css css/app.min.css -->
+      <link rel="stylesheet" href="styles/app.css">
+      <!-- endbuild -->
   </head>
   <body>
 
       <div ui-view></div>
+
       <script src="scripts/libs.min.js"></script>
       <script src="scripts/main.min.js"></script>
+      <!-- build:js scripts/app.min.js -->
+      <!-- endbuild -->
   </body>
 </html>

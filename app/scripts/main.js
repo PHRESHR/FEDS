@@ -5,7 +5,7 @@
 
   // angular modules
   require('angular-ui-router');
-  require('./templates');
+  require('./.templates/templates');
   require('./controllers/_index');
   require('./services/_index');
   require('./directives/_index');
