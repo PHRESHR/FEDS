@@ -5,6 +5,8 @@
 
   // angular modules
   require('angular-ui-router');
+  require('angular-animate');
+  require('angular-material');
   require('./.templates/templates');
   require('./controllers/_index');
   require('./services/_index');
@@ -15,6 +17,8 @@
 
     var requires = [
       'ui.router',
+      'ngAnimate',
+      'ngMaterial',
       'templates',
       'app.controllers',
       'app.services',
