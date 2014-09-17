@@ -17,7 +17,6 @@
     var requires = [
       'ui.router',
       'ngAnimate',
-      'ngMaterial',
       'templates',
       'app.controllers',
       'app.services',
