@@ -6,7 +6,6 @@
   // angular modules
   require('angular-ui-router');
   require('angular-animate');
-  require('angular-material');
   require('./.templates/templates');
   require('./controllers/_index');
   require('./services/_index');
