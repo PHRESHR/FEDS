@@ -17,7 +17,7 @@ gulp.task('styles', ['images'], function() {
     ))
     .on('error', handleErrors)
     .pipe($.autoprefixer(config.styles.AUTOPREFIXER_BROWSERS))
-    .pipe(gulp.dest(config.styles.tmp))
+    .pipe(gulp.dest(global.isDist ? config.styles.build : config.styles.tmp))
     // Concatenate And Minify Styles
     // .pipe($.if('*.css', $.csso()))
     // .pipe($.streamify($.rename({suffix: '.min'})))

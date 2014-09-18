@@ -58,7 +58,7 @@ gulp.task('browserify', ['templateCache'], function() {
       .pipe(source('main.js'))
       .pipe($.streamify($.rename({suffix: '.min'})))
       // Specify the output destination
-      .pipe(gulp.dest(config.scripts.tmp))
+      .pipe(gulp.dest(global.isDist ? config.scripts.build : config.scripts.tmp))
       // Log when bundling completes!
       .on('end', bundleLogger.end)
       .pipe(reload({stream: true, once: true}));

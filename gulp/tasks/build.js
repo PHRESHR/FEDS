@@ -26,7 +26,7 @@ var gulp          = require('gulp');
 var browserSync   = require('browser-sync');
 var config        = require('./config.json');
 
-gulp.task('build', ['default', 'setWatch'], function() {
+gulp.task('build', ['default', 'setWatch', 'setDist'], function() {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'

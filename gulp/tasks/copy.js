@@ -14,21 +14,3 @@ gulp.task('copy-html', function () {
   }).pipe(gulp.dest(config.base.build))
     .pipe($.size({title: 'copy html'}));
 });
-
-gulp.task('copy-styles', function () {
-  return gulp.src([
-    config.styles.tmp + '/*.{css,scss,sass}'
-  ], {
-    base: config.styles.tmp
-  }).pipe(gulp.dest(config.styles.build))
-    .pipe($.size({title: 'copy styles'}));
-});
-
-gulp.task('copy-scripts', function () {
-  return gulp.src([
-    config.scripts.tmp + '/*.{js,coffee}'
-  ], {
-    base: config.scripts.tmp
-  }).pipe(gulp.dest(config.scripts.build))
-    .pipe($.size({title: 'copy scripts'}));
-});
