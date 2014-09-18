@@ -37,9 +37,11 @@ gulp.task('browserify', ['templateCache'], function() {
     global: true
   }, ngAnnotate);
 
-  bundler.transform({
-    global: true
-  }, uglifyify);
+  if(global.isDist) {
+    bundler.transform({
+      global: true
+    }, uglifyify);
+  }
 
   var bundle = function() {
     // Log when bundling starts
