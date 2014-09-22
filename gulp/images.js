@@ -4,13 +4,12 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var config = require('./config.json');
 
-// Optimize Images
 gulp.task('images', function () {
-  return gulp.src(config.images.files)
+  return gulp.src(config.images.build + '/**/*')
     .pipe($.cache($.imagemin({
+      optimizationLevel: 3,
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest(config.images.build))
-    .pipe($.size({title: 'images'}));
+    .pipe(gulp.dest(config.images.build));
 });

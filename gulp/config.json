@@ -6,23 +6,24 @@
     "build": "dist"
   },
   "html": {
-    "files": "app/*.{html,jade}"
+    "files": "app/*.{html,jade}",
+    "filters": {
+      "css": "*.css",
+      "js": "*.js"
+    }
   },
   "views": {
     "base": "app/views",
     "files": "app/views/**/*.{html,jade}",
-    "build": "app/scripts/.templates"
-  },
-  "templateCache": {
-    "base": "app/scripts/.templates",
-    "files": "app/scripts/.templates/*.js"
+    "templateCache": "app/scripts/templates/*.js",
+    "build": "app/scripts/templates"
   },
   "scripts": {
     "base": "app/scripts",
     "tmp": ".tmp/scripts",
     "build": "dist/scripts",
     "files": "app/scripts/**/*.{js,coffee}",
-    "browserify": "./app/scripts/main.js"
+    "app": "./app/scripts/app.js"
   },
   "styles": {
     "base": "app/styles",
@@ -44,14 +45,18 @@
       {"sourcemap": "true", "style": "expanded", "precision": "10"}
     ]
   },
+  "assets": {
+    "base": "app/assets/",
+    "files": "app/assets/**/*"
+  },
   "images": {
-    "base": "app/images",
-    "build": "dist/images",
-    "files": "app/images/**/*.{png,jpg,gif}"
+    "base": "app/assets/images",
+    "build": "dist/assets/images",
+    "files": "app/assets/images/**/*.{png,jpg,gif}"
   },
   "fonts": {
-    "base": "app/fonts",
-    "build": "dist/fonts",
-    "files": "app/fonts/**/*.{eot,ttf,woff,svg}"
+    "base": "app/assets/fonts",
+    "build": "dist/assets/fonts",
+    "files": "app/assets/fonts/**/*.{eot,ttf,woff,svg}"
   }
 }

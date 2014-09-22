@@ -2,7 +2,7 @@
   'use strict';
 
   var AppSettings = {
-    appTitle: 'Example Application',
+    appTitle: 'FEDS',
     apiUrl: '/api/v1'
   };
 

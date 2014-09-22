@@ -1,6 +1,6 @@
 {
-  "name": "ng-browserify",
-  "description": "A styleguide for AngularJS projects",
+  "name": "FEDS",
+  "description": "A FrontEnd Starter for AngularJS projects",
   "version": "0.0.0",
   "homepage": "",
   "license": "MIT",
@@ -11,6 +11,7 @@
     "angular-mocks": "~1.3.x",
     "angular-animate": "~1.3.x",
     "angular-resource": "~1.3.x",
-    "animate.css": "~3.2.0"
+    "animate.css": "~3.2.0",
+    "polymer": "Polymer/polymer#~0.4.1"
   }
 }

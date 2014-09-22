@@ -1,24 +1,11 @@
 .DS_Store
-
-# Logs
-logs
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-
-# SASS cache files
+.idea
 .sass-cache
-
-# Dependency directories
-node_modules
+.tmp
+templates
+build
+dist
 bower_components
 components
-
-# Build files
-.tmp
-dist
-build
-.templates
+node_modules
+*.bak

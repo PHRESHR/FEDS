@@ -14,9 +14,9 @@
       var deferred = $q.defer();
 
       $http.get('apiPath').success(function(data) {
-          deferred.resolve(data);
+        deferred.resolve(data);
       }).error(function(err, status) {
-          deferred.reject(err, status);
+        deferred.reject(err, status);
       });
 
       return deferred.promise;
