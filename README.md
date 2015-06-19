@@ -1,125 +1,139 @@
-FEDS
-====
+# FrontEnd Design Starter for building web apps, utilizing Angular, ES6, JSPM, Gulp, PostCSS.
 
-Personal FrontEnd Design Starter for building web apps, utilizing Angular, Gulp, Browserify, SASS, BEM and Flexbox.
-Borrowing from [Google Web Starter Kit (Beta)](http://developers.google.com/web/starter-kit) and [angularjs-gulp-browserify-boilerplate](http://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate) utilizing best [AngularJS practices](github.com/toddmotto/angularjs-styleguide).
+> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) based on [NG6-starter](https://github.com/angular-class/NG6-starter))
 
----
+This repo serves as an extremely minimal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [JSPM](http://jspm.io/) and [Gulp](http://gulpjs.com/) for building our files and assisting with boilerplate.
+**This seed is not a yeoman generator!** Its just a minimal starter with tasks to build and create boilerplate. **Features include**:
+* Best practice in file organization for Angular
+* Frictionless package management and module loader with [JSPM](http://jspm.io)
+* Ready to go build system for working with [ES6](https://git.io/es6features)
+* Task for generating component boilerplate with angular, including test
+* Testing system ready to go
 
-### Getting Started
+# Walkthrough
+1. JSPM is built ontop of [SystemJS](https://github.com/systemjs/systemjs) which uses a polyfill for the new ES6 module loader that will eventually be supportedly natively. This means that there is no intermediate build process before your files are served. Instead, the module loader will load (and transpile) only the files it needs at runtime. When you're ready for deployment, JSPM can also bundle your app for production (very much like webpack here).
+ 2. JSPM abstracts dependency management. You can `jspm install` any package that lives on bower, npm, or github and use the ES6 `import` syntax all the same on them.
 
-Since this borrows heavily from WSK, I've included their [installation docs](docs/install.md) (modified a bit) to help with getting up and running.
+ # Walkthrough
+## How is this different than Webpack?
+Webpack builds your application into a single package before you serve it to the client. JSPM is different for two major reasons:
+ 1. JSPM is built ontop of [SystemJS](https://github.com/systemjs/systemjs) which uses a polyfill for the new ES6 module loader that will eventually be supportedly natively. This means that there is no intermediate build process before your files are served. Instead, the module loader will load (and transpile) only the files it needs at runtime. When you're ready for deployment, JSPM can also bundle your app for production (very much like webpack here).
+ 2. JSPM abstracts dependency management. You can `jspm install` any package that lives on bower, npm, or github and use the ES6 `import` syntax all the same on them.
 
----
+## Build System
+This branch of NG6 uses the power of JSPM and Gulp together for its build system. Yes, you don't need Gulp if you're using JSPM. This is true if your build system is only responsible for file manipulation, which ours is not.
 
-These are the main libraries that FEDS uses:
+`JSPM` does most of the heavy lifting here, it handles:
+* Dependency management. Download external modules from npm, bower, or straight from github
+* Dynamic transpiling from ES6 to ES5 with `Babel`
+* Loading HTML files as modules
+* Loading CSS files and appending the styles to the DOM
+* Loading any and all modules
+* Doing the same for testing as well
 
-* [AngularJS](http://angularjs.org/)
-* [SASS](http://sass-lang.com/)
-* [Gulp](http://gulpjs.com/)
-* [Bower](http://bower.io/)
-* [Browserify](http://browserify.org/)
+`Gulp` is like the orchestrator, it handles:
+* Starting a dev server
+* Refreshing the browser on file changes
+* Generate boilerplate for our angular app
+* Building a production version of our app ready for deployment
 
-TODO: Add [Polymer](http://polymer-project.org/) maybe????.
+**Check out the [webpack version](https://github.com/angular-class/NG6-starter/tree/master) for an alternative ES6 build system**
 
----
-
-### AngularJS
-
-AngularJS is a MVW (Model-View-Whatever) Javascript Framework for creating single-page web applications. In this boilerplate, it is used for all the application routing as well as all of the frontend views and logic.
-
-##### File Organization
-
-The AngularJS files are all located within `/app/js`, structured in the following manner:
-
+## File Structure
+We use the component approach in NG6. This will be a standard if using the new router in angular and a great way to ensure easy transition to Angular 2. Everything or mostly everything is a component. A component is a self contained app basically. It has its own style, template, controllers, routing, specs, etc. All capsulated in its own folder. Here's how it looks:
 ```
-/controllers
-  _index.js   (the main module on which to mount all controllers, loaded in main.js)
-  example.js
-/directives
-  _index.js   (the main module on which to mount all directives, loaded in main.js)
-  example.js
-/services
-  _index.js   (the main module on which to mount all services, loaded in main.js)
-  example.js
-constants.js  (any constant values that you want to make available to Angular)
-main.js       (the main file read by Browserify, also where the application is defined and bootstrapped)
-on_run.js     (any functions or logic that need to be executed on app.run)
-routes.js     (all route definitions and logic)
-templates.js  (this is created via Gulp by compiling your views, and will not be present beforehand)
-```
-
-Controllers, services, directives, etc. should all be placed within their respective folders and mounted on their respective `_index.js` module. Most other logic can be placed in an existing file, or added in new files as long as it is required inside `main.js`.
-
-##### Dependency injection
-
-Dependency injection is carried out with the `ng-annotate` library. In order to take advantage of this, a simple comment of the format:
-
-```
-/**
- * @ngInject
- */
+client
+--app/
+----app.js * entry file for app
+----app.html * template for app
+----components/ * where most of components live
+------components.js * entry file for components
+------home/ * home component
+--------home.js * home entry file
+--------home.component.js * directive for home
+--------home.controller.js * controller for home
+--------home.styl * styles for home
+--------home.html * template for home
+--------home.spec.js * specs for home
+----common/ * where common things in our app live
 ```
 
-needs to be added directly before any Angular functions/modules. The Gulp tasks will then take care of adding any dependency injection, requiring you only to specify the dependencies within the function call and nothing more.
+## Testing Setup
+All test are written in ES6 too because why not! We use JSPM to take care of all the logistics of getting those files run in browsers just like our client files. Our setup is:
 
----
+* Karma
+* JSPM + Babel
+* Mocha
+* Chai
 
-### SASS
+To run test just `npm test` or `karma start`. Read more about testing [below](#testing)
 
-SASS, standing for 'Syntactically Awesome Style Sheets', is a CSS extension language adding things like extending, variables, and mixins to the language. This boilerplate provides just the `main.scss` file, into which all your SASS files should be imported. A Gulp task (discussed later) is provided for compilation and minification of the stylesheets based on this file.
 
----
+# Getting Started
+## Dependencies
+What you need to run this app:
+* `node` and `npm`
+Once you have those, you should install these globals with `npm i -g`:
+* `jspm`
+* `gulp`
+* `karma`
+* `karma-cli`
 
-### Browserify
+## Installing
+* `fork` me
+* `clone` your fork
+* `git checkout jspm`
+* `npm i` to install all dependencies
+* (with JSPM there's usually a `jspm install` step too, but that is added to npm's `postinstall` for convenience)
 
-Browserify is a Javascript file and module loader, allowing you to `require('modules')` in all of your files in the same manner as you would on the backend in a node.js environment. The bundling and compilation is then taken care of by Gulp, discussed below.
 
----
+## Running the app
+NG6 uses Gulp to build and start the dev environment. After you have installed all dependencies you can now run the app.
+Run `gulp` to start a dev server and watch all files. The port will displayed to you.
 
-### Gulp
+### Gulp tasks
+Without Webpack's required build step, serving is easy and you choose when you are ready to build now
 
-Gulp is a "streaming build system", providing a very fast and efficient method for running your build tasks.
+Here's a list of possible Gulp task to run:
+* `serve` (also default `gulp`)
+  * starts a dev server with `browser-sync` serving the client folder and listens for changes
+* `build`
+  * bundles our app into a single file with all included dependencies into `dist/`. both minified and unminified included
+* `component`
+  * builds out boilerplate for a new angular component, [read below](#generating-components) to see how to use this in more detail
 
-##### Web Server
+### Testing
+To run test, just run `npm test` or `karma start`.
 
-Gulp is used here to provide a very basic node/Express web server for viewing and testing your application as you build. It serves static files from the `build/` directory, leaving routing up to AngularJS. All Gulp tasks are configured to automatically reload the server upon file changes. The application is served to `localhost:3000` once you run the `gulp dev` task.
+The only difference from a regular `Karma` setup is the use of [`karma-jspm`](https://github.com/Workiva/karma-jspm) plugin to let JSPM handle spec files as modules. `Karma` will run all files that match `.spec.js` inside the `app` folder. This is awesome because we can write tests for our components in the same folder with the rest of the component. Be sure to include your `spec` files in the appropriate component directory. You must name the spec file like so, `[name].spec.js`. If you don't want to use the `.spec.js` extension, you must change the `jspm.loadFiles` glob in `karma.conf.js` to look for whatever file(s) you want.
 
-##### Scripts
+`Mocha` is the testing suite being used and `chai` is the assertion library. If you would like to change this, do so in `karma.conf.js`.
 
-A number of build processes are automatically run on all of our Javascript files, run in the following order:
 
-- **JSHint:** Gulp is currently configured to run a JSHint task before processing any Javascript files. This will show any errors in your code in the console, but will not prevent compilation or minification from occurring.
-- **Browserify:** The main build process run on any Javascript files. This processes any of the `require('module')` statements, compiling the files as necessary.
-- **ngAnnotate:** This will automatically add the correct dependency injection to any AngularJS files, as mentioned previously.
-- **Uglifyify:** This will minify the file created by Browserify and ngAnnotate.
+## Generating components
+Following a good practice allows us to guarantee certain things. We can take advantage of these guarantees and use a task to automate things. Because the components we make will almost always have the same structure, we can generate this boilerplate for you. Boilerplate includes:
+* Component folder
+* Component entry file which will `import` all of its dependencies
+* Component component file, or directive file will will also `import` its dependencies
+* Component template
+* Component controller
+* Component css
+* Component spec with passing tests already written
 
-The resulting file (`main.min.js`) is placed inside the directory `/build/js/`.
+You can create all this by hand, but it gets old fast!
+To generate a component, we must use the `gulp component --name componentName` task.
 
-##### Styles
+The `--name` flag is the name of the component you want to create. Be sure to be unique, or it will override an existing component.
 
-Just one task is necessary for processing our SASS files, and that is `gulp-sass`. This will read the `main.scss` file, processing and importing any dependencies and then minifying the result. This file (`main.min.css`) is placed inside the directory `/build/css/`.
 
-##### Views
+The component will be created by default on the root of `client/app/components`.
 
-When any changes are made to the `index.html` file, the new file is simply copied to the `/build/` directory without any changes occurring.
+We can change this by passing in the `--parent` flag.
 
-Files inside `/app/views/`, on the other hand, go through a slightly more complex process. The `gulp-angular-templatecache` module is used in order to process all views/partials, creating the `template.js` file briefly mentioned earlier. This file will contain all the views, now in Javascript format inside Angular's `$templateCache` service. This will allow us to include them in our Javascript minification process, as well as avoid extra HTTP requests for our views.
+You can pass in a path relative to `client/app/components/` and your component will be made there.
 
----
+So running `gulp component --name signup --parent auth` will create a `signup` component at `client/app/components/auth/signup`.
 
-## Browser Support
+Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`.
 
-At present, we officially aim to support the following browsers:
-
-* IE9, IE10, IE11, IE Mobile 10
-* FF 30, 31
-* Chrome 34, 35
-* Safari 7, 8
-* Opera 23, 24
-* iOS Safari 7, 8
-* Opera Coast
-* Android / Chrome 4.4, 4.4.3
-* BlackBerry 10
-
----
+Because `--name` is used to create folder name too, use camel or snakeCase and stay consistent.

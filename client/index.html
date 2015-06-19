@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title ng-bind="$state.current.title + ' - ' + siteTitle"></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    [ng-cloak] {
+        display: none;
+    }
+  </style>
+</head>
+<body ng-cloak>
+  <app class="app"></app>
+  <!-- build:js -->
+  <script src="jspm_packages/system.js"></script>
+  <script src="jspm.config.js"></script>
+  <script>
+    System.import('app/app').catch(console.error.bind(console));
+  </script>
+  <!-- endbuild -->
+</body>
+</html>
