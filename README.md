@@ -1,4 +1,4 @@
-# FrontEnd Develpoment Starter for building web apps, utilizing Angular, ES6, JSPM, Gulp, PostCSS.
+# Front-End Develpoment Starter for building web apps, utilizing Angular, ES6, JSPM, Gulp, PostCSS.
 
 > Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) based on [NG6-starter](https://github.com/angular-class/NG6-starter))
 
