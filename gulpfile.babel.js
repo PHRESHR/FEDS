@@ -110,7 +110,7 @@ gulp.task('serve', ['styles'], () => {
       middleware: [
         modRewrite([
 					'^([^.]+)$ /index.html [L]'
-			])
+				])
       ]
 		},
 	});

@@ -6,6 +6,7 @@
 @import 'base/_html.css';
 @import 'base/_media.css';
 @import '../components/home/home.css';
+@import '../components/about/about.css';
 /*@import 'base/_util.css';*/
 
 app {

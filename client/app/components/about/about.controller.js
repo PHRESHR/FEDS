@@ -2,7 +2,7 @@
 
 class AboutController {
 	constructor(){
-		this.name = 'about';
+		this.name = 'About';
 	}
 }
 
