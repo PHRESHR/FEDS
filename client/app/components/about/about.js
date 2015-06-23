@@ -11,7 +11,8 @@ let aboutModule = angular.module('about', [
 	$stateProvider
 		.state('about', {
 			url: '/about',
-			template: '<about></about>'
+			template: '<about></about>',
+			title: 'About'
 		});
 })
 .directive('about', aboutComponent);
