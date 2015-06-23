@@ -165,7 +165,12 @@ gulp.task('serve:dist', ['default'], () => {
     //  will present a certificate warning in the browser.
     // https: true,
     server: paths.dist,
-    baseDir: paths.dist
+    baseDir: paths.dist,
+		middleware: [
+			modRewrite([
+				'^([^.]+)$ /index.html [L]'
+			])
+		]
   });
 });
 
