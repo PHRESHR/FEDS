@@ -1,7 +1,9 @@
+import fs from 'fs';
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
 import glob from 'glob';
+import merge from 'merge-stream';
 import runSequence from 'run-sequence';
 import autoprefixer from 'autoprefixer-core';
 import nested from 'postcss-nested';
@@ -16,7 +18,9 @@ import jspm from 'jspm';
 import browserSync from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
 import gulpLoadPlugins from 'gulp-load-plugins';
+import swPrecache from 'sw-precache';
 import yargs from 'yargs';
+import pkg from './package.json';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -43,6 +47,8 @@ let paths = {
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
 	],
+	images: resolveToApp('assets/images/**/*'),
+	fonts: resolveToApp('assets/fonts/**/*'),
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
 	dist: path.join(__dirname, 'dist/')
 };
@@ -85,6 +91,36 @@ gulp.task('lint', () => {
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
+gulp.task('assets', function () {
+	// Optimize Images
+  var images = gulp.src(paths.images)
+	.pipe($.cache($.imagemin({
+		progressive: true,
+		interlaced: true
+	})))
+	.pipe(gulp.dest(paths.dist + 'assets/images'));
+
+	// Copy Web Fonts To Dist
+	var fonts = gulp.src(paths.fonts)
+  .pipe(gulp.dest(paths.dist  + 'assets/fonts'));
+
+  return merge(images, fonts);
+});
+
+// Copy All Files At The Root Level (app)
+gulp.task('copy', function () {
+  var app = gulp.src([
+		root + '/*',
+    '!' + root + '/app/',
+    '!' + root + '/index.{html,js}'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist'));
+
+  return merge(app)
+    .pipe($.size({title: 'copy'}));
 });
 
 // Clean output directory
@@ -155,6 +191,45 @@ gulp.task('build', () => {
 		});
 });
 
+// See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
+// an in-depth explanation of what service workers are and why you should care.
+// Generate a service worker file that will provide offline functionality for
+// local resources. This should only be done for the 'dist' directory, to allow
+// live reload to work as expected when serving from the 'app' directory.
+gulp.task('generate-service-worker', cb => {
+  const rootDir = paths.dist;
+
+  swPrecache({
+    // Used to avoid cache conflicts when serving on localhost.
+    cacheId: pkg.name || 'FEDS',
+    staticFileGlobs: [
+      // Add/remove glob patterns to match your directory setup.
+      `${rootDir}/assets/fonts/**/*.woff`,
+      `${rootDir}/assets/images/**/*`,
+      `${rootDir}/**/*.js`,
+      `${rootDir}/**/*.css`,
+      `${rootDir}/*.{html,json}`
+    ],
+    // Translates a static file path to the relative URL that it's served from.
+    stripPrefix: path.join(rootDir, path.sep)
+  }, (err, swFileContents) => {
+    if (err) {
+      cb(err);
+      return;
+    }
+
+    const filepath = path.join(rootDir, 'service-worker.js');
+
+    fs.writeFile(filepath, swFileContents, err => {
+      if (err) {
+        cb(err);
+        return;
+      }
+      cb();
+    });
+  });
+});
+
 gulp.task('component', () => {
 	let cap = function(val){
 		return val.charAt(0).toUpperCase() + val.slice(1);
@@ -176,12 +251,11 @@ gulp.task('component', () => {
 });
 
 // Build production files, the default task
-gulp.task('default');
-
 gulp.task('default', ['clean'], cb => {
   runSequence(
     'styles',
-    ['jshint', 'build'],
+    ['lint', 'build', 'assets', 'copy'],
+		'generate-service-worker',
     cb
   );
 });
