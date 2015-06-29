@@ -6,14 +6,11 @@ import glob from 'glob';
 import merge from 'merge-stream';
 import runSequence from 'run-sequence';
 import autoprefixer from 'autoprefixer-core';
-import nested from 'postcss-nested';
+import nesting from 'postcss-nesting';
 import mixins from 'postcss-mixins';
-import selector from 'postcss-custom-selectors';
 import vars from 'postcss-simple-vars';
 import cssnext from 'cssnext';
 import lost from 'lost';
-import csswring from 'csswring';
-import mqpacker from 'css-mqpacker';
 import jspm from 'jspm';
 import browserSync from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
@@ -47,8 +44,7 @@ let paths = {
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
 	],
-	images: resolveToApp('assets/images/**/*'),
-	fonts: resolveToApp('assets/fonts/**/*'),
+	assets: resolveToApp('assets/**/*'),
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
 	dist: path.join(__dirname, 'dist/')
 };
@@ -56,15 +52,12 @@ let paths = {
 // Style tasks
 let styleTask = (stylesPath, srcs) => {
   const processors = [
-    lost(),
+		autoprefixer({browsers: ['last 2 version']}),
     cssnext(),
-    selector(),
     mixins(),
     vars(),
-    nested(),
-    autoprefixer({browsers: ['last 2 version']}),
-		csswring(),
-		mqpacker()
+    nesting(),
+		lost()
   ];
   return gulp.src(srcs.map((src) => {
       return path.join(root + '/app', stylesPath, src);
@@ -72,9 +65,9 @@ let styleTask = (stylesPath, srcs) => {
     .pipe($.changed(stylesPath, {extension: '.css'}))
 		.pipe($.sourcemaps.init())
     .pipe($.postcss(processors).on('error', console.error.bind(console)))
-    .pipe($.rename({
-      extname: '.min.css'
-    }))
+    // .pipe($.rename({
+    //   extname: '.min.css'
+    // }))
 		.pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(root + '/app'));
 };
@@ -93,20 +86,10 @@ gulp.task('lint', () => {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-gulp.task('assets', function () {
+gulp.task('assets', () => {
 	// Optimize Images
-  var images = gulp.src(paths.images)
-	.pipe($.cache($.imagemin({
-		progressive: true,
-		interlaced: true
-	})))
-	.pipe(gulp.dest(paths.dist + 'assets/images'));
-
-	// Copy Web Fonts To Dist
-	var fonts = gulp.src(paths.fonts)
-  .pipe(gulp.dest(paths.dist  + 'assets/fonts'));
-
-  return merge(images, fonts);
+  return gulp.src(paths.assets)
+		.pipe(gulp.dest(paths.dist + 'assets'));
 });
 
 // Copy All Files At The Root Level (app)

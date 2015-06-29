@@ -1,8 +1,6 @@
 {
   "name": "FEDS",
-  "dependencies": {
-    "connect-modrewrite": "^0.8.1"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "karma start",
     "postinstall": "jspm install"
@@ -28,15 +26,12 @@
     }
   },
   "devDependencies": {
-    "autoprefixer-core": "^5.1.11",
+    "autoprefixer-core": "^5.2.1",
     "babel": "^5.5.8",
     "browser-sync": "^2.7.7",
     "connect-modrewrite": "^0.8.1",
-    "css-mqpacker": "^3.1.0",
-    "cssnext": "^1.4.0",
-    "csswring": "^3.0.5",
+    "cssnext": "^1.7.1",
     "del": "^1.2.0",
-    "fs-extra": "^0.19.0",
     "glob": "^5.0.10",
     "gulp": "^3.9.0",
     "gulp-cache": "^0.2.10",
@@ -61,13 +56,11 @@
     "karma-jspm": "^1.1.5",
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.2",
-    "lost": "^6.3.0",
+    "lost": "^6.4.0",
     "merge-stream": "^0.1.7",
     "postcss": "^4.1.11",
-    "postcss-conditionals": "^1.1.1",
-    "postcss-custom-selectors": "^2.1.0",
     "postcss-mixins": "^0.3.0",
-    "postcss-nested": "^0.3.1",
+    "postcss-nesting": "^0.1.0",
     "postcss-simple-vars": "^0.3.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.0",
