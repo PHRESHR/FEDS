@@ -104,10 +104,10 @@ a {
   background-color: transparent;
   text-decoration: none;
   outline: 0;
-  &:active,
-  &:hover {
-    outline: 0;
-  }
+}
+
+a:active, a:hover {
+  outline: 0;
 }
 
 audio,
@@ -416,27 +416,29 @@ img {
 home {
 	display: block;
 	width: 100%;
-	height: 100%
+	height: 100%;
 }
-		home h1 {
-			color: #c0392b;
-		}
-		home section {
-			margin: 0;
-		}
-section.home {
-			margin: 0 16px;
-	margin: 0
-}section.home{
-			margin: 0 1rem;
-		}
+home h1 {
+  color: #c0392b;
+}
+home section {
+  margin: 0;
+}
+home section.home {
+  margin: 0;
+}
+@media (min-width: 960px) {
+  home section.home{
+    margin: 0 16px;
+  }
+}
 about {
 	display: block;
 	width: 100%;
 	height: 100%;
-	h1 {
-		color: #c0392b;
-	}
+}
+about h1 {
+  color: #c0392b;
 }
 /*@import 'base/_util.css';*/
 
@@ -444,7 +446,4 @@ app {
 	display: block;
 	width: 100%;
 	height: 100%;
-	/*color: var(--brandRed)*/
 }
-
-/*# sourceMappingURL=app.css.map */

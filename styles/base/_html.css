@@ -14,23 +14,17 @@ summary {
 
 main {
   display: block;
-  margin: 0 auto;
-  /*max-width: var(--big-break);
-  padding: 0 var(--md-pad) var(--md-pad);*/
 }
 
 article {
   margin-bottom: var(--md-pad);
-  max-width: calc(60% - 1rem);
 }
 
 aside {
   margin-bottom: var(--md-pad);
-  max-width: calc(40% - 1rem);
 }
 
 section {
-  /*margin-bottom: var(--md-pad);*/
   max-width: 100%;
 }
 

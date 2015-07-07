@@ -2,20 +2,17 @@ home {
 	display: block;
 	width: 100%;
 	height: 100%;
-	{
-		h1 {
-			color: var(--brandRed);
-		}
-		section {
-			margin: 0;
-		}
+	h1 {
+		color: var(--brandRed);
 	}
-}
-section.home {
-	margin: 0;
-	{
-		@media (--medium) {&{
-			margin: 0 var(--md-pad);
-		}}
+	section {
+		margin: 0;
+		&.home {
+			margin: 0;
+
+			@media (--medium) {
+				margin: 0 16px;
+			}
+		}
 	}
 }

@@ -6,7 +6,7 @@ import glob from 'glob';
 import merge from 'merge-stream';
 import runSequence from 'run-sequence';
 import autoprefixer from 'autoprefixer-core';
-import nesting from 'postcss-nesting';
+import nested from 'postcss-nested';
 import mixins from 'postcss-mixins';
 import vars from 'postcss-simple-vars';
 import cssnext from 'cssnext';
@@ -52,23 +52,29 @@ let paths = {
 // Style tasks
 let styleTask = (stylesPath, srcs) => {
   const processors = [
-		autoprefixer({browsers: ['last 2 version']}),
-    cssnext(),
-    mixins(),
+		cssnext({
+			'browers': ['last 2 version'],
+			'customProperties': true,
+			'colorFunction': true,
+      'customSelectors': true,
+			'sourcemap': true,
+			'from': './client/app/styles/app.css'
+		}),
+		lost(),
+		mixins(),
     vars(),
-    nesting(),
-		lost()
+    nested()
   ];
   return gulp.src(srcs.map((src) => {
       return path.join(root + '/app', stylesPath, src);
     }))
     .pipe($.changed(stylesPath, {extension: '.css'}))
-		.pipe($.sourcemaps.init())
+		// .pipe($.sourcemaps.init())
     .pipe($.postcss(processors).on('error', console.error.bind(console)))
     // .pipe($.rename({
     //   extname: '.min.css'
     // }))
-		.pipe($.sourcemaps.write('.'))
+		// .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(root + '/app'));
 };
 
