@@ -1,9 +1,7 @@
-'use strict';
-
 class HomeController {
-	constructor(){
-		this.name = 'Home';
-	}
+  constructor() {
+    this.name = 'home';
+  }
 }
 
 export default HomeController;

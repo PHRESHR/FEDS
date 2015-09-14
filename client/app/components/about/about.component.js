@@ -1,18 +1,16 @@
-'use strict';
-
 import template from './about.html!text';
 import controller from './about.controller';
-// import './about.css!';
+import './about.css!';
 
-let aboutComponent = function(){
-	return {
-		template,
-		controller,
-		restrict: 'E',
-		controllerAs: 'vm',
-		scope: {},
-		bindToController: true
-	};
+const aboutComponent = function(){
+  return {
+    template,
+    controller,
+    restrict: 'E',
+    controllerAs: 'vm',
+    scope: {},
+    bindToController: true
+  };
 };
 
 

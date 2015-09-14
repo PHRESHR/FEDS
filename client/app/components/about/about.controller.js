@@ -1,10 +1,7 @@
-'use strict';
-
 class AboutController {
-	constructor(){
-		this.name = 'About';
-	}
+  constructor() {
+    this.name = 'about';
+  }
 }
-
 
 export default AboutController;

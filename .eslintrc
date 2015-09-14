@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "airbnb/base",
+    "angular"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "__DEV__": true,
+    "__SERVER__": true
+  },
+  "rules": {
+    "no-use-before-define": 0,
+    "block-scoped-var": 0,
+    // Temporarily disabled for test/* until babel/babel-eslint#33 is resolved
+    "padded-blocks": 0,
+    "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "no-else-return": 1,
+    "no-param-reassign": 1,
+    "no-unused-vars": 1,
+    "no-sequences": 0,
+    "no-console": 1,
+    "dot-notation": 1,
+    "new-cap": 1,
+    // Angular Rules
+    "angular/di": 0,
+    "angular/module-setter": 1,
+    "angular/module-getter": 1
+  }
+}

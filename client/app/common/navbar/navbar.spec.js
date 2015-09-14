@@ -2,21 +2,19 @@
 // https://github.com/Workiva/karma-jspm/issues/23
 import angular from 'angular';
 import 'angular-mocks';
-import <%= upCaseName %>Module from './<%= name %>'
-import <%= upCaseName %>Controller from './<%= name %>.controller';
-import <%= upCaseName %>Component from './<%= name %>.component';
-import <%= upCaseName %>Template from './<%= name %>.html!text';
+import NavbarModule from './navbar';
+import NavbarController from './navbar.controller';
+import NavbarComponent from './navbar.component';
+import NavbarTemplate from './navbar.html!text';
 
-describe('<%= upCaseName %>', ()=>{
+describe('Navbar', ()=>{
 	let $rootScope,
 	makeController;
 	
-	beforeEach(angular.mock.module(<%= upCaseName %>Module.name));
+	beforeEach(angular.mock.module(NavbarModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new <%= upCaseName %>Controller();
-		};
+		makeController = ()=> new NavbarController();
 	}));
 	
 	describe('Module', ()=>{
@@ -41,17 +39,17 @@ describe('<%= upCaseName %>', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(<%= upCaseName %>Template).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(NavbarTemplate).to.match(/{{\s?vm\.name\s?}}/g);
 		});
 	});
 	
 	
 	describe('Component', ()=>{
 			// test the component/directive itself
-			let component = <%= upCaseName %>Component();
+			let component = NavbarComponent();
 			
 			it('should use the right template',()=>{
-				expect(component.template).to.equal(<%= upCaseName %>Template);
+				expect(component.template).to.equal(NavbarTemplate);
 			});
 			
 			it('should use controllerAs', ()=>{
@@ -59,7 +57,7 @@ describe('<%= upCaseName %>', ()=>{
 			});
 			
 			it('should use the right controller', ()=>{
-				expect(component.controller).to.equal(<%= upCaseName %>Controller);
+				expect(component.controller).to.equal(NavbarController);
 			});
 	});
 });
