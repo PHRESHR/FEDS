@@ -1,10 +1,6 @@
-<p align="center">
-    <img src="http://res.cloudinary.com/angularclass/image/upload/v1431802814/ng6_vrmd60.png" alt="NG6" width="320px;"/>
-</p>
+# Front-End Develpoment Starter for building web apps, utilizing Angular, ES6, JSPM, Gulp, PostCSS.
 
-# NG6 [![Join the chat at https://gitter.im/angular-class/NG6-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-class/NG6-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) (or [Webpack](https://github.com/angular-class/NG6-starter/tree/master))
+> Starter repo for [Angular](https://angularjs.org) + [ES6](https://git.io/es6features) + [JSPM](http://jspm.io/) based on [NG6-starter](https://github.com/angular-class/NG6-starter))
 
 This repo serves as an extremely minimal starter for anyone looking to get up and running with Angular and ES6. Using a combo of [JSPM](http://jspm.io/) and [Gulp](http://gulpjs.com/) for building our files and assisting with boilerplate.
 **This seed is not a yeoman generator!** Its just a minimal starter with tasks to build and create boilerplate. **Features include**:
@@ -14,32 +10,9 @@ This repo serves as an extremely minimal starter for anyone looking to get up an
 * Task for generating component boilerplate with angular, including test
 * Testing system ready to go
 
-**Check out the [webpack version](https://github.com/angular-class/NG6-starter/tree/master) for an alternative ES6 build system**
-
-> If you're looking for [Angular 2](https://angular.io/) please use [angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)
-
-___
-
-# TOC
-* [Walkthrough](#walkthrough)
-    * [What about Webpack?](#how-is-this-different-than-webpack)
-    * [Build system](#build-system)
-    * [File structure](#file-structure)
-    * [Testing setup](#testing-setup)
-* [Getting Started](#getting-started)
-    * [Dependencies](#dependencies)
-    * [Installing](#installing)
-    * [Running the app](#running-the-app)
-        * [Gulp tasks](#gulp-tasks)
-        * [Testing](#testing)
-    * [Generating Components](#generating-components)   
-* [Starter Kit Support and Questions](#starter-kit-support-and-questions)
-
 # Walkthrough
-## How is this different than Webpack?
-Webpack builds your application into a single package before you serve it to the client. JSPM is different for two major reasons: 
- 1. JSPM is built ontop of [SystemJS](https://github.com/systemjs/systemjs) which uses a polyfill for the new ES6 module loader that will eventually be supportedly natively. This means that there is no intermediate build process before your files are served. Instead, the module loader will load (and transpile) only the files it needs at runtime. When you're ready for deployment, JSPM can also bundle your app for production (very much like webpack here).
- 2. JSPM abstracts dependency management. You can `jspm install` any package that lives on bower, npm, or github and use the ES6 `import` syntax all the same on them.
+1. JSPM is built ontop of [SystemJS](https://github.com/systemjs/systemjs) which uses a polyfill for the new ES6 module loader that will eventually be supportedly natively. This means that there is no intermediate build process before your files are served. Instead, the module loader will load (and transpile) only the files it needs at runtime. When you're ready for deployment, JSPM can also bundle your app for production (very much like webpack here).
+2. JSPM abstracts dependency management. You can `jspm install` any package that lives on bower, npm, or github and use the ES6 `import` syntax all the same on them.
 
 ## Build System
 This branch of NG6 uses the power of JSPM and Gulp together for its build system. Yes, you don't need Gulp if you're using JSPM. This is true if your build system is only responsible for file manipulation, which ours is not.
@@ -107,17 +80,13 @@ Once you have those, you should install these globals with `npm i -g`:
 * `npm i` to install all dependencies
 * (with JSPM there's usually a `jspm install` step too, but that is added to npm's `postinstall` for convenience)
 
-#### Failing `npm install`
-If this is your first time running JSPM, you'll probably run into a `warn Error - GitHub rate limit reached`
-
-Fix this by adding your GitHub credentials to JSPM with: `jspm registry config github`.
 
 ## Running the app
 NG6 uses Gulp to build and start the dev environment. After you have installed all dependencies you can now run the app.
 Run `gulp` to start a dev server and watch all files. The port will displayed to you.
- 
+
 ### Gulp tasks
-Without Webpack's required build step, serving is easy and you choose when you are ready to build now 
+Without Webpack's required build step, serving is easy and you choose when you are ready to build now
 
 Here's a list of possible Gulp task to run:
 * `serve` (also default `gulp`)
@@ -126,7 +95,7 @@ Here's a list of possible Gulp task to run:
   * bundles our app into a single file with all included dependencies into `dist/`. both minified and unminified included
 * `component`
   * builds out boilerplate for a new angular component, [read below](#generating-components) to see how to use this in more detail
-  
+
 ### Testing
 To run test, just run `npm test` or `karma start`.
 
@@ -153,30 +122,12 @@ The `--name` flag is the name of the component you want to create. Be sure to be
 
 The component will be created by default on the root of `client/app/components`.
 
-We can change this by passing in the `--parent` flag. 
+We can change this by passing in the `--parent` flag.
 
 You can pass in a path relative to `client/app/components/` and your component will be made there.
 
 So running `gulp component --name signup --parent auth` will create a `signup` component at `client/app/components/auth/signup`.
 
-Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`. 
+Running `gulp component --name footer --parent ../common` will create a `footer` component at `client/app/common/footer`.
 
 Because `--name` is used to create folder name too, use camel or snakeCase and stay consistent.
-
-# Starter Kit Support and Questions
-> Contact us anytime for anything about this repo
-
-* [Gitter: angular-class/NG6-starter](https://gitter.im/angular-class/NG6-starter)
-* [Twitter: @AngularClass](https://twitter.com/AngularClass)
-
-___
-
-enjoy -- **AngularClass** 
-
-
-<br><br>
-
-[![AngularClass](https://angularclass.com/images/ng-crown.svg  "Angular Class")](https://angularclass.com)
-##[AngularClass](https://angularclass.com)
-> Learn Angular in 2 days from the best
-
