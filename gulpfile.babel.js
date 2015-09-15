@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
 import jspm from 'jspm';
+import systemjsBuilder from 'systemjs-builder';
 import sync from 'run-sequence';
 import serve from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
@@ -14,12 +15,12 @@ const reload = ()=> serve.reload();
 const root = 'client';
 
 // helper method for resolving paths
-const resolveToApp = (glob)=> {
+const resolveToApp = (glob) => {
   glob = glob || '';
   return path.join(root, 'app', glob); // app/{glob}
 };
 
-const resolveToComponents = (glob)=> {
+const resolveToComponents = (glob) => {
   glob = glob || '';
   return path.join(root, 'app/components', glob); // app/components/{glob}
 };
@@ -37,13 +38,10 @@ const paths = {
   dist: path.join(__dirname, 'dist/')
 };
 // Clean
-gulp.task('clean', ()=> {
-  // You can use multiple globbing patterns as you would with `gulp.src`
-  return del([path.dist]);
-});
+gulp.task('clean', done => del([paths.dist], {dot: true}, done));
 
 // Lint JavaScript
-gulp.task('lint', ()=> {
+gulp.task('lint', () => {
   return gulp.src([paths.js,
     '!**/*.spec.js'
   ])
@@ -61,7 +59,7 @@ gulp.task('lint', ()=> {
   });
 });
 
-gulp.task('serve', ()=> {
+gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
     open: false,
@@ -84,34 +82,44 @@ gulp.task('serve', ()=> {
       ])
     ]
   });
-  gulp.watch([paths.html], reload);
-  gulp.watch([paths.css], reload);
-  gulp.watch([paths.js], ['lint']);
+
+  gulp.watch(
+    [paths.html, paths.css, paths.js]
+  )
+  .on('change', gulp.parallel('lint', reload));
 });
 
 gulp.task('build', ()=> {
   const dist = path.join(paths.dist + 'app.js');
-  // Use JSPM to bundle our app
-  return jspm.bundleSFX(resolveToApp('app'), dist, {})
-  .then(()=> {
-    // Also create a fully annotated minified copy
-    return gulp.src(dist)
-    .pipe($.ngAnnotate())
-    .pipe($.uglify())
-    .pipe($.rename('app.min.js'))
-    .pipe(gulp.dest(paths.dist))
-  })
-  .then(()=> {
-    // Inject minified script into index
-    return gulp.src('client/index.html')
-    .pipe($.htmlReplace({
-      'js': 'app.min.js'
-    }))
-    .pipe(gulp.dest(paths.dist));
+
+  const Builder = systemjsBuilder;
+	const builder = new Builder({
+    baseURL: 'client',
   });
+	builder.reset();
+  builder.loadConfig("./jspm.config.js")
+    .then(() => {
+      return jspm.bundleSFX(resolveToApp('app'), dist, {})
+      .then(()=> {
+        // Also create a fully annotated minified copy
+        return gulp.src(dist)
+        .pipe($.ngAnnotate())
+        .pipe($.uglify())
+        .pipe($.rename('app.min.js'))
+        .pipe(gulp.dest(paths.dist))
+      })
+      .then(()=> {
+        // Inject minified script into index
+        return gulp.src('client/index.html')
+        .pipe($.htmlReplace({
+          'js': 'app.min.js'
+        }))
+        .pipe(gulp.dest(paths.dist));
+      });
+    })
 });
 
-gulp.task('component', ()=> {
+gulp.task('component', () => {
   const cap = (val) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
@@ -124,12 +132,13 @@ gulp.task('component', ()=> {
     name: name,
     upCaseName: cap(name)
   }))
-  .pipe($.rename((path)=> {
+  .pipe($.rename((path) => {
     path.basename = path.basename.replace('temp', name);
   }))
   .pipe(gulp.dest(destPath));
 });
 
-gulp.task('default', (done) => {
-  sync('lint', 'serve', done);
-});
+gulp.task('dist', gulp.series('clean', 'build'));
+
+gulp.task('default',
+  gulp.parallel('lint', 'serve'));

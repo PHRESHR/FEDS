@@ -11,7 +11,12 @@ const homeModule = angular.module('home', [
   $stateProvider
     .state('home', {
       url: '/',
-      template: '<home></home>'
+      template: '<home></home>',
+      resolve: {
+        // Constant Meta
+        $title: () => 'Home',
+        $description: () => 'My App description'
+      }
     });
 })
 .directive('home', homeComponent);

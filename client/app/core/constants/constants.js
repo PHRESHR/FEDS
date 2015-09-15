@@ -1,2 +1,6 @@
-export const AppSettings = Object.freeze({ appTitle: 'Tomorrow Pictures TV' });
-export const HEADER_API_VERSION = ''; // 'application/vnd.employee-scheduling.api+json;version=1'; // application/vnd.employee-scheduling.v1+json
+export const AppSettings = Object.freeze({
+  appTitle: 'App Title',
+  appDescription: 'This is what my app\'s description',
+  appUrl: 'http://example.com'
+});
+export const HEADER_API_VERSION = ''; // 'application/vnd.your-api.api+json;version=1'; // application/vnd.your-api.v1+json

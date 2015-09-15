@@ -3,12 +3,9 @@ System.config({
   transpiler: "babel",
   babelOptions: {
     "optional": [
-      "es7.decorators",
-      "es7.classProperties",
       "runtime",
       "optimisation.modules.system"
-    ],
-    "stage": 0
+    ]
   },
   paths: {
     "github:*": "jspm_packages/github/*",
@@ -24,7 +21,7 @@ System.config({
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "babel": "npm:babel-core@5.8.24",
     "babel-runtime": "npm:babel-runtime@5.8.20",
-    "clean-css": "npm:clean-css@3.4.1",
+    "clean-css": "npm:clean-css@3.4.3",
     "core-js": "npm:core-js@1.1.4",
     "css": "github:systemjs/plugin-css@0.1.16",
     "normalize.css": "github:necolas/normalize.css@3.0.3",
@@ -105,7 +102,7 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
-    "npm:clean-css@3.4.1": {
+    "npm:clean-css@3.4.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "commander": "npm:commander@2.8.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",

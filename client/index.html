@@ -2,8 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>angular-jspm-starter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title ng-bind="($title || 'App Title')">App Title</title>
+  <meta name="description" content={{::$description}}>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta property="fb:app_id" content="" />
+  <meta property="og:title" content={{$title}} />
+  <meta property="og:description" content={{$description}} />
+  <meta property="og:image" content={{$metaImg}} />
+  <meta property="og:url" content="{{$url}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="App Title" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@yourName" />
+  <meta name="twitter:creator" content="@yourName" />
+
+  <link rel="canonical" href="https://example.com">
 </head>
 <body>
   <app layout="column"></app>

@@ -9,7 +9,12 @@ const aboutModule = angular.module('about', [
   $stateProvider
     .state('about', {
       url: '/about',
-      template: '<about></about>'
+      template: '<about></about>',
+      resolve: {
+        // Constant Meta
+        $title: () => 'About',
+        $description: () => 'My About description'
+      }
     });
 })
 .directive('about', aboutComponent);

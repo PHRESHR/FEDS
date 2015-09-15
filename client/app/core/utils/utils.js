@@ -10,3 +10,19 @@ export function dashCaseToCamelCase(str) {
 export function camelCaseToDashCase(str) {
   return str.replace(/[A-Z]/g, ($1) => '-' + $1.toLowerCase());
 }
+
+export function getTitleValue(title) {
+  return angular.isFunction(title) ? title() : title;
+}
+
+export function getDescriptionValue(description) {
+  return angular.isFunction(description) ? description() : description;
+}
+
+export function getMetaImgValue(metaImg) {
+  return angular.isFunction(metaImg) ? metaImg() : metaImg;
+}
+
+export function getUrlValue(url) {
+  return angular.isFunction(url) ? url() : url;
+}

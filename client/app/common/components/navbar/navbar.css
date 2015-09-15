@@ -1,4 +1,4 @@
-@import '../common.css';
+@import '../../common.css';
 
 /*
   JSPM doesn't have a Stylus plugin yet and it's LESS plugin
@@ -14,11 +14,20 @@
   darkTextColor = #212121
 */
 
-.hero {
-  background-color: #263238; /* darkBgColor */
-  height: 500px;
-  padding: 30px;
+.navbar {
+  height: 65px;
+  background-color: #0277BD; /* primaryColor */
+  padding: 10px;
 }
-.hero * {
+.navbar .nav-links,
+.navbar .logo {
+  display: inline-block;
+}
+.navbar .logo {
   color: #F5F5F5; /* lightTextColor */
+  margin-right: 50%;
+}
+.navbar .nav-links span {
+  color: #F5F5F5; /* lightTextColor */
+  font-size: 1.6rem;
 }
