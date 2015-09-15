@@ -59,6 +59,37 @@ gulp.task('lint', () => {
   });
 });
 
+gulp.task('build', gulp.series('clean',  function building() {
+  const dist = path.join(paths.dist + 'app.js');
+
+  const Builder = systemjsBuilder;
+	const builder = new Builder({
+    baseURL: 'client',
+  });
+	builder.reset();
+  builder.loadConfig("./jspm.config.js")
+    .then(() => {
+      return jspm.bundleSFX(resolveToApp('app'), dist, {})
+      .then(()=> {
+        // Also create a fully annotated minified copy
+        return gulp.src(dist)
+        .pipe($.ngAnnotate())
+        .pipe($.uglify())
+        .pipe($.rename('app.min.js'))
+        .pipe(gulp.dest(paths.dist))
+      })
+      .then(()=> {
+        // Inject minified script into index
+        return gulp.src('client/index.html')
+        .pipe($.htmlReplace({
+          'js': 'app.min.js'
+        }))
+        .pipe(gulp.dest(paths.dist));
+      });
+    })
+}));
+
+// Browser-sync
 gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
@@ -89,35 +120,28 @@ gulp.task('serve', () => {
   .on('change', gulp.parallel('lint', reload));
 });
 
-gulp.task('build', ()=> {
-  const dist = path.join(paths.dist + 'app.js');
+gulp.task('dist', gulp.series('clean', 'build'));
 
-  const Builder = systemjsBuilder;
-	const builder = new Builder({
-    baseURL: 'client',
+// Browser-sync Dist
+gulp.task('serve:dist', gulp.parallel('build', function serving() {
+  serve({
+    port: process.env.PORT || 3000,
+    open: false,
+    notify: false,
+    logPrefix: 'FEDS',
+    // Run as an https by uncommenting 'https: true'
+    // Note: this uses an unsigned certificate which on first access
+    //       will present a certificate warning in the browser.
+    // https: true,
+    server: 'dist',
+    baseDir: 'dist',
+    middleware: [
+      modRewrite([
+        '^([^.]+)$ /index.html [L]'
+      ])
+    ]
   });
-	builder.reset();
-  builder.loadConfig("./jspm.config.js")
-    .then(() => {
-      return jspm.bundleSFX(resolveToApp('app'), dist, {})
-      .then(()=> {
-        // Also create a fully annotated minified copy
-        return gulp.src(dist)
-        .pipe($.ngAnnotate())
-        .pipe($.uglify())
-        .pipe($.rename('app.min.js'))
-        .pipe(gulp.dest(paths.dist))
-      })
-      .then(()=> {
-        // Inject minified script into index
-        return gulp.src('client/index.html')
-        .pipe($.htmlReplace({
-          'js': 'app.min.js'
-        }))
-        .pipe(gulp.dest(paths.dist));
-      });
-    })
-});
+}));
 
 gulp.task('component', () => {
   const cap = (val) => {
@@ -137,8 +161,6 @@ gulp.task('component', () => {
   }))
   .pipe(gulp.dest(destPath));
 });
-
-gulp.task('dist', gulp.series('clean', 'build'));
 
 gulp.task('default',
   gulp.parallel('lint', 'serve'));

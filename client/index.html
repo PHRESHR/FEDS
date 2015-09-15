@@ -19,6 +19,7 @@
   <meta name="twitter:creator" content="@yourName" />
 
   <link rel="canonical" href="https://example.com">
+  <base href="/"></base>
   <style>
     html, body, app {
       background-color: #111;
@@ -103,7 +104,8 @@
   <script src="jspm_packages/system.js"></script>
   <script src="jspm.config.js"></script>
   <script>
-    System.import('app/app').catch(console.error.bind(console));
+    System.import('app/app')
+      .catch(console.error.bind(console));
   </script>
   <!-- endbuild -->
 </body>
