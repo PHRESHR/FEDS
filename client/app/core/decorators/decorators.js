@@ -1,16 +1,15 @@
 import {pascalCaseToCamelCase, dashCaseToCamelCase} from '../utils/utils';
-
-const appDecorators = angular.module('app.decorators', []);
+import appModule from '../../app';
 
 function Run() {
   return function decorator(target, key, descriptor) {
-    appDecorators.run(descriptor.value);
+    appModule.run(descriptor.value);
   };
 }
 
 function Config() {
   return function decorator(target, key, descriptor) {
-    appDecorators.config(descriptor.value);
+    appModule.config(descriptor.value);
   };
 }
 
@@ -20,7 +19,7 @@ function Service(options) {
     if (!options.serviceName) {
       throw new Error('@Service() must contains serviceName property!');
     }
-    appDecorators.service(options.serviceName, target);
+    appModule.service(options.serviceName, target);
   };
 }
 
@@ -30,7 +29,7 @@ function Filter(filter) {
     if (!filter.filterName) {
       throw new Error('@Filter() must contains filterName property!');
     }
-    appDecorators.filter(filter.filterName, descriptor.value);
+    appModule.filter(filter.filterName, descriptor.value);
   };
 }
 
@@ -76,7 +75,7 @@ function View(view) {
       directiveName = pascalCaseToCamelCase(directiveName);
       directiveName = dashCaseToCamelCase(directiveName);
       options.bindToController = options.bindToController || options.bind || {};
-      appDecorators.directive(directiveName, () => {
+      appModule.directive(directiveName, () => {
         return Object.assign(defaults, {
           controller: target
         }, options);
@@ -89,21 +88,20 @@ function View(view) {
 function Directive(options) {
   return function decorator(target) {
     const directiveName = dashCaseToCamelCase(options.selector);
-    appDecorators.directive(directiveName, target.directiveFactory);
+    appModule.directive(directiveName, target.directiveFactory);
   };
 }
 
 function RouteConfig(stateName, options) {
   return function decorator(target) {
-    appDecorators.config(['$stateProvider', ($stateProvider) => {
+    appModule.config(['$stateProvider', ($stateProvider) => {
       $stateProvider.state(stateName, Object.assign({
         controller: target,
         controllerAs: 'vm'
       }, options));
     }]);
-    appDecorators.controller(target.name, target);
+    appModule.controller(target.name, target);
   };
 }
 
-export default appDecorators;
 export {Component, View, RouteConfig, Inject, Run, Config, Service, Filter, Directive};

@@ -1,8 +1,7 @@
 import './decorators/decorators';
 import './utils/utils';
 import './config/config';
-// import './decorators/decorators';
-// import './interceptors/index';
+import './config/run';
 
 // import './resources/resources';
 // import './services/services';

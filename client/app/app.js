@@ -1,13 +1,13 @@
 //  ----------------Core Deps---------------  //
 import angular from 'angular';
-import Decorators from './core/decorators/decorators';
+import {Component, View, RouteConfig, Inject, Run, Config, Service, Filter, Directive} from './core/decorators/decorators';
 
 const appModule = angular.module('app', [
   'ngSanitize',
   'ngMaterial',
   'ui.router',
   'rx',
-  Decorators.name
+  // Decorators.name
 ]);
 
 export default appModule;
