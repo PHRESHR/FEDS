@@ -1,3 +1,4 @@
+import '../../sidenav/sidenav';
 import '../../toolbar/toolbar';
 import '../../home/home';
 import '../../about/about';

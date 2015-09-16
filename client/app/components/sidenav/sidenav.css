@@ -12,15 +12,20 @@
   darkTextColor = #212121
 */
 
-.md-sidenav-left {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  background-color: white;
+.toolbar {
+  height: 65px;
+  background-color: #0277BD; /* primaryColor */
+  padding: 10px;
 }
-
-.md-sidenav-left.md-locked-open {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
+.toolbar .tool-links,
+.toolbar .logo {
+  display: inline-block;
+}
+.toolbar .logo {
+  color: #F5F5F5; /* lightTextColor */
+  margin-right: 50%;
+}
+.toolbar .tool-links span {
+  color: #F5F5F5; /* lightTextColor */
+  font-size: 1.6rem;
 }
