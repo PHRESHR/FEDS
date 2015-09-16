@@ -69,12 +69,12 @@ gulp.task('build', gulp.series('clean',  function building() {
 	builder.reset();
   builder.loadConfig("./jspm.config.js")
     .then(() => {
-      return jspm.bundleSFX(resolveToApp('app'), dist, {})
+      return jspm.bundleSFX(resolveToApp('bootstrap'), dist, {minify: true, mangle: false, sourceMaps: true})
       .then(()=> {
         // Also create a fully annotated minified copy
         return gulp.src(dist)
-        .pipe($.ngAnnotate())
-        .pipe($.uglify())
+        // .pipe($.ngAnnotate())
+        // .pipe($.uglify())
         .pipe($.rename('app.min.js'))
         .pipe(gulp.dest(paths.dist))
       })

@@ -1,4 +1,4 @@
-
+import './decorators/decorators';
 import './utils/utils';
 import './config/config';
 // import './decorators/decorators';

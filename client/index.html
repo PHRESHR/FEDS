@@ -22,7 +22,7 @@
   <base href="/"></base>
   <style>
     html, body, app {
-      background-color: #111;
+      /*background-color: #111;*/
       height: 100%;
     }
     app {
@@ -88,8 +88,8 @@
     }
   </style>
 </head>
-<body>
-  <app layout="column">
+<body layout="column">
+  <app layout="column" layout-fill>
     <div class="loader">
       <div class="spinner">
         <div class="rect1"></div>
@@ -104,7 +104,7 @@
   <script src="jspm_packages/system.js"></script>
   <script src="jspm.config.js"></script>
   <script>
-    System.import('app/app')
+    System.import('app/bootstrap')
       .catch(console.error.bind(console));
   </script>
   <!-- endbuild -->

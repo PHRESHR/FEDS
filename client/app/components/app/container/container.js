@@ -1,0 +1,20 @@
+import '../../home/home';
+// import '../about/about';
+import template from './container.html!text';
+import {RouteConfig, View, Component, Inject} from '../../../core/decorators/decorators';
+
+// start-non-standard
+@Component({
+  selector: 'app'
+})
+@View({
+  template: template
+})
+@Inject('$mdSidenav','$log')
+// end-non-standard
+class AppContainer {
+  constructor($mdSidenav, $log) {
+    $log.log('App Container');
+    this.openLeftMenu = () => $mdSidenav('left').toggle();
+  }
+}

@@ -1,8 +1,10 @@
 import { AppSettings } from '../constants/constants';
 import { getTitleValue, getDescriptionValue, getMetaImgValue, getUrlValue } from '../utils/utils';
+import {Run, Inject} from '../decorators/decorators';
 
 class OnRun {
-  // @ngInject
+  @Run()
+  @Inject('$rootScope', '$state', '$stateParams', '$location', '$log')
   static runFactory($rootScope, $state, $stateParams, $location, $log) {
     $rootScope.$state = $state;
 

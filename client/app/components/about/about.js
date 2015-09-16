@@ -1,22 +1,41 @@
-import angular from 'angular';
-import 'angular-ui-router';
-import aboutComponent from './about.component';
+import template from './about.html!text';
+import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
-const aboutModule = angular.module('about', [
-  'ui.router'
-])
-.config(($stateProvider)=> {
-  $stateProvider
-    .state('about', {
-      url: '/about',
-      template: '<about></about>',
-      resolve: {
-        // Constant Meta
-        $title: () => 'About',
-        $description: () => 'My About description'
-      }
-    });
+// start-non-standard
+@RouteConfig('app.about', {
+  url: '/about',
+  template: '<about></about>',
+  resolve: {
+    // Constant Meta
+    $title: () => 'About',
+    $description: () => 'My App description'
+  }
 })
-.directive('about', aboutComponent);
+@Component({
+  selector: 'about'
+})
+@View({
+  template: template
+})
+@Inject('$log')
+// end-non-standard
 
-export default aboutModule;
+// About Controller
+class About {
+  constructor() {
+    this.name = 'about';
+    this.activated = false;
+    // On load
+    this.activate();
+  }
+
+  /**
+   * Handles on load processing, and loading initial data
+ */
+  activate() {
+
+    this.activated = true;
+  }
+}
+
+export default About;

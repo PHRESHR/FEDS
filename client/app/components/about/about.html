@@ -1,5 +1,4 @@
-<navbar></navbar>
-<h1>{{ vm.name }}</h1>
-<section>
-	This is the about nothing page! Remove me if you don't need me please
-</section>
+<main ng-if="vm.activated">
+	<h1>you can find me in {{ vm.name }}.html</h1>
+</main>
+<div ng-if="!vm.activated">Loading Data...</div>
