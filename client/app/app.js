@@ -4,6 +4,7 @@ import 'angular-animate';
 import 'angular-sanitize';
 import 'angular-material';
 import 'angular-ui-router';
+import 'rx-angular';
 
 //  ----------------App Deps---------------  //
 import OnConfig from './core/config/config';
@@ -14,7 +15,10 @@ import AppComponent from './app.component';
 import 'normalize.css';
 
 const appModule = angular.module('app', [
+  'ngSanitize',
+  'ngMaterial',
   'ui.router',
+  'rx',
   Common.name,
   Components.name
 ])

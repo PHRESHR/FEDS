@@ -29,6 +29,7 @@
       "clean-css": "npm:clean-css@^3.4.3",
       "css": "github:systemjs/plugin-css@^0.1.16",
       "normalize.css": "github:necolas/normalize.css@^3.0.3",
+      "rx-angular": "npm:rx-angular@^0.0.14",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
     "devDependencies": {
