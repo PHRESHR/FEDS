@@ -10,11 +10,10 @@ import {RouteConfig, View, Component, Inject} from '../../../core/decorators/dec
 @View({
   template: template
 })
-@Inject('$mdSidenav','$log')
+@Inject('$log')
 // end-non-standard
 class AppContainer {
-  constructor($mdSidenav, $log) {
+  constructor($log) {
     $log.log('App Container');
-    this.openLeftMenu = () => $mdSidenav('left').toggle();
   }
 }

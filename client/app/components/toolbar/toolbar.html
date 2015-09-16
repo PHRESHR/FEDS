@@ -1,8 +1,8 @@
 <md-toolbar>
-  <md-button class="menu" hide-gt-sm ng-click="vm.toggleList()" aria-label="Show User List">
-    <md-icon md-svg-icon="menu" ></md-icon>
-  </md-button>
   <div class="md-toolbar-tools">
+    <md-button class="menu" hide-gt-sm ng-click="vm.openLeftMenu()" aria-label="Show User List">
+      <md-icon md-svg-icon="menu" ></md-icon>
+    </md-button>
 		<div class="logo">
 			<h1><a ui-sref="app.home">{{ vm.name }}</a></h1>
 		</div>

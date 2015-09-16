@@ -9,13 +9,14 @@ import {Component, View, Inject} from '../../core/decorators/decorators';
 @View({
   template: template
 })
-@Inject('$log')
+@Inject('$mdSidenav', '$log')
 // end-non-standard
 
 // Toolbar Controller
 class Toolbar {
-  constructor($log) {
+  constructor($mdSidenav, $log) {
     this.name = 'toolbar';
+    this.openLeftMenu = () => $mdSidenav('left').toggle();
     this.activated = false;
     // On load
     this.activate();
