@@ -17,3 +17,5 @@ class AppContainer {
     $log.log('App Container');
   }
 }
+
+export default AppContainer;

@@ -17,3 +17,5 @@ class AppLayout {
     $log.log('App Layout');
   }
 }
+
+export default AppLayout;
