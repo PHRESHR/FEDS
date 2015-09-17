@@ -8,7 +8,7 @@ import {Service, Inject} from '../decorators/decorators';
 // end-non-standard
 class TestService {
   constructor($log) {
-    this.$log = $log;
+    // this.$log = $log;
     this.name = 'Test Service';
   }
   getService() {

@@ -2,7 +2,7 @@ import template from './about.html!text';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
-@RouteConfig('app.about', {
+@RouteConfig('about', {
   url: '/about',
   template: '<about></about>',
   resolve: {

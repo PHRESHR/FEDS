@@ -2,7 +2,7 @@ import template from './home.html!text';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
-@RouteConfig('app.home', {
+@RouteConfig('home', {
   url: '/',
   template: '<home></home>',
   resolve: {
