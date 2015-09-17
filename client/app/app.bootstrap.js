@@ -11,7 +11,7 @@ import './core/core';
 import './components/app/container/container';
 import './components/app/layout/layout';
 
-import appModule from './app';
+import appModule from './app.module';
 
 /*
  * As we are using ES6 with Angular 1.x we can't use ng-app directive

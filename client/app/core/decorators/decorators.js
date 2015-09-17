@@ -1,5 +1,5 @@
 import {pascalCaseToCamelCase, dashCaseToCamelCase} from '../utils/utils';
-import appModule from '../../app';
+import appModule from '../../app.module';
 
 function Run() {
   return function decorator(target, key, descriptor) {
