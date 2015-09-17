@@ -11,13 +11,6 @@ import {RouteConfig, View, Component} from '../../../core/decorators/decorators'
   abstract: true,
   template: template
 })
-//
-// @Component({
-//   selector: 'app'
-// })
-// @View({
-//   template: template
-// })
 // end-non-standard
 class AppLayout {
   constructor($log) {
