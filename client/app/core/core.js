@@ -4,4 +4,4 @@ import './config/config';
 import './config/run';
 
 // import './resources/resources';
-// import './services/services';
+import './services/test';
