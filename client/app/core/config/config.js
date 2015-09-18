@@ -15,30 +15,30 @@ class OnConfig {
     $rootScopeProvider.digestTtl(8);
 
     // Angular Material theme config
-    $mdThemingProvider.definePalette('brand-blue', $mdThemingProvider.extendPalette(
-      'blue', {
-        '50': '#DCEFFF',
-        '100': '#AAD1F9',
-        '200': '#7BB8F5',
-        '300': '#4C9EF1',
-        '400': '#1C85ED',
-        '500': '#106CC8', // Main Color
-        '600': '#0159A2',
-        '700': '#025EE9',
-        '800': '#014AB6',
-        '900': '#013583',
-        'contrastDefaultColor': 'light',
-        'contrastDarkColors': '50 100 200 A100',
-        'contrastStrongLightColors': '300 400 A200 A400'
-      }));
-
     $mdThemingProvider.definePalette('brand-red', $mdThemingProvider.extendPalette('red', {
       'A100': '#DE3641'
     }));
 
+    $mdThemingProvider.definePalette('brand-grey', $mdThemingProvider.extendPalette('grey', {
+      '50': '#E9E9E9',
+      '100': '#BCBCBC',
+      '200': '#909090',
+      '300': '#6B6B6B',
+      '400': '#464646',
+      '500': '#212121',
+      '600': '#1D1D1D',
+      '700': '#191919',
+      '800': '#151515',
+      '900': '#1a1a1a',
+      'contrastDefaultColor': 'light',
+      'contrastDarkColors': '50 100 200 A100',
+      'contrastStrongLightColors': '300 400 A200 A400'
+    }));
+
     $mdThemingProvider.theme('default')
-      .primaryPalette('brand-blue')
+      .primaryPalette('brand-grey')
       .accentPalette('brand-red')
+      .backgroundPalette('brand-grey', { 'default': '900' })
       .dark();
 
     // use the HTML5 History API
