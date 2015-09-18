@@ -15,9 +15,22 @@ class OnConfig {
     $rootScopeProvider.digestTtl(8);
 
     // Angular Material theme config
-    $mdThemingProvider.definePalette('brand-red', $mdThemingProvider.extendPalette('red', {
-      'A100': '#DE3641'
-    }));
+    $mdThemingProvider.definePalette('brand-red', {
+      '50': '#f9ebea',
+      '100': '#ecc4bf',
+      '200': '#e09c95',
+      '300': '#d57b72',
+      '400': '#ca5a4e',
+      '500': '#c0392b',
+      '600': '#a83226',
+      '700': '#902b20',
+      '800': '#78241b',
+      '900': '#601d16',
+      'A100': '#ecc4bf',
+      'A200': '#e09c95',
+      'A400': '#ca5a4e',
+      'A700': '#902b20'
+    });
 
     $mdThemingProvider.definePalette('brand-grey', $mdThemingProvider.extendPalette('grey', {
       '50': '#E9E9E9',
@@ -29,7 +42,7 @@ class OnConfig {
       '600': '#1D1D1D',
       '700': '#191919',
       '800': '#151515',
-      '900': '#1a1a1a',
+      '900': '#111111',
       'contrastDefaultColor': 'light',
       'contrastDarkColors': '50 100 200 A100',
       'contrastStrongLightColors': '300 400 A200 A400'
