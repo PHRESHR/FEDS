@@ -44,6 +44,18 @@ class OnRun {
       $state.go('500');
       $log.log(error);
     });
+
+    const unbind = [
+      stateChangeSuccess,
+      stateChangeStart,
+      stateChangeError
+    ];
+
+    $rootScope.$on('$destroy', () => {
+      unbind.forEach((fn) => {
+        fn();
+      });
+    });
   }
 }
 
