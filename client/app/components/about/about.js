@@ -1,4 +1,5 @@
 import template from './about.html!text';
+import './about.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
