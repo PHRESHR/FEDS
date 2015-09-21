@@ -2,9 +2,7 @@
 import angular from 'angular';
 import 'angular-animate';
 import 'angular-sanitize';
-import 'angular-material';
 import 'angular-ui-router';
-import 'rx-angular';
 
 //  ----------------App Files---------------  //
 import './core/core';

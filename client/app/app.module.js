@@ -3,9 +3,7 @@ import angular from 'angular';
 
 const appModule = angular.module('app', [
   'ngSanitize',
-  'ngMaterial',
-  'ui.router',
-  'rx'
+  'ui.router'
 ]);
 
 export default appModule;
