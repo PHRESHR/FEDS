@@ -81,11 +81,6 @@ gulp.task('lint', () => {
   .on('error', (e) => {
     const basePath = path.join(__dirname, root);
     const filename = e.fileName.substr(basePath.length + 1);
-
-    // notify.bug(
-    //   'Lint error: ' + e.message,
-    //   filename + ': ' + e.lineNumber
-    // );
   });
 });
 
@@ -167,7 +162,7 @@ gulp.task('serve:dist',
       logPrefix: 'FEDS',
       // Run as an https by uncommenting 'https: true'
       // Note: this uses an unsigned certificate which on first access
-      //       will present a certificate warning in the browser.
+      // will present a certificate warning in the browser.
       // https: true,
       server: 'dist',
       baseDir: 'dist',
