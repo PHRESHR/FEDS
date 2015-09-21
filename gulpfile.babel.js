@@ -3,6 +3,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
 import jspm from 'jspm';
 import systemjsBuilder from 'systemjs-builder';
+import atCSS from 'postcss-import';
 import sync from 'run-sequence';
 import serve from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
@@ -39,6 +40,28 @@ const paths = {
 };
 // Clean
 gulp.task('clean', done => del([paths.dist], {dot: true}, done));
+
+// Style tasks
+let styleTask = (stylesPath, srcs) => {
+  const processors = [
+		atCSS({
+			from: 'client/app/styles/*.css'
+		})
+  ];
+  return gulp.src(srcs.map((src) => {
+      return path.join(root + '/app', stylesPath, src);
+    }))
+    .pipe($.newer(stylesPath, {extension: '.css'}))
+		.pipe($.sourcemaps.init())
+    .pipe($.postcss(processors).on('error', console.error.bind(console)))
+		.pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest(root + '/app/layout'));
+};
+
+// Compile and Automatically Prefix Stylesheets
+gulp.task('styles', () => {
+  return styleTask('styles', ['app.css']);
+});
 
 // Lint JavaScript
 gulp.task('lint', () => {
@@ -163,4 +186,8 @@ gulp.task('component', () => {
 });
 
 gulp.task('default',
-  gulp.parallel('lint', 'serve'));
+  gulp.series(
+    'styles',
+    gulp.parallel('lint', 'serve')
+  )
+);
