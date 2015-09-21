@@ -36,6 +36,7 @@ class OnRun {
 
     const stateChangeStart = $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       $log.log('Change Started:', new Date());
+      $log.log(fromState);
     });
 
     const stateChangeError = $rootScope.$on('$stateChangeError', (event, next, previous, error) => {
@@ -51,11 +52,11 @@ class OnRun {
       stateChangeError
     ];
 
-    $rootScope.$on('$destroy', () => {
-      unbind.forEach((fn) => {
-        fn();
-      });
-    });
+    // $rootScope.$on('$destroy', () => {
+    //   unbind.forEach((fn) => {
+    //     fn();
+    //   });
+    // });
   }
 }
 
