@@ -1,4 +1,3 @@
-import '../components/sidenav/sidenav';
 import '../components/toolbar/toolbar';
 import '../components/home/home';
 import '../components/about/about';
