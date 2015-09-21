@@ -34,6 +34,7 @@ const paths = {
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
+  static: path.join(root, 'static/**/*'),
   entry: path.join(root, 'app/bootstrap.js'),
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
   dist: path.join(__dirname, 'dist/')
@@ -61,6 +62,12 @@ let styleTask = (stylesPath, srcs) => {
 // Compile and Automatically Prefix Stylesheets
 gulp.task('styles', () => {
   return styleTask('styles', ['app.css']);
+});
+
+gulp.task('static', () => {
+	// Optimize Images
+  return gulp.src(paths.static)
+		.pipe(gulp.dest(paths.dist));
 });
 
 // Lint JavaScript
@@ -92,7 +99,7 @@ gulp.task('build', gulp.series('clean',  function building() {
 	builder.reset();
   builder.loadConfig("./jspm.config.js")
     .then(() => {
-      return jspm.bundleSFX(resolveToApp('bootstrap'), dist, {minify: true, mangle: false, sourceMaps: true})
+      return jspm.bundleSFX(resolveToApp('app.bootstrap'), dist, {minify: true, mangle: false, sourceMaps: true})
       .then(()=> {
         // Also create a fully annotated minified copy
         return gulp.src(dist)
@@ -143,28 +150,35 @@ gulp.task('serve', () => {
   .on('change', gulp.parallel('lint', reload));
 });
 
-gulp.task('dist', gulp.series('clean', 'build'));
+gulp.task('dist',
+  gulp.series(
+    'clean',
+    gulp.parallel('static', 'build')
+  )
+);
 
 // Browser-sync Dist
-gulp.task('serve:dist', gulp.parallel('build', function serving() {
-  serve({
-    port: process.env.PORT || 3000,
-    open: false,
-    notify: false,
-    logPrefix: 'FEDS',
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: 'dist',
-    baseDir: 'dist',
-    middleware: [
-      modRewrite([
-        '^([^.]+)$ /index.html [L]'
-      ])
-    ]
-  });
-}));
+gulp.task('serve:dist',
+  gulp.parallel('lint', 'build', 'static', function serving() {
+    serve({
+      port: process.env.PORT || 3000,
+      open: false,
+      notify: false,
+      logPrefix: 'FEDS',
+      // Run as an https by uncommenting 'https: true'
+      // Note: this uses an unsigned certificate which on first access
+      //       will present a certificate warning in the browser.
+      // https: true,
+      server: 'dist',
+      baseDir: 'dist',
+      middleware: [
+        modRewrite([
+          '^([^.]+)$ /index.html [L]'
+        ])
+      ]
+    });
+  })
+);
 
 gulp.task('component', () => {
   const cap = (val) => {
@@ -187,7 +201,7 @@ gulp.task('component', () => {
 
 gulp.task('default',
   gulp.series(
-    'styles',
-    gulp.parallel('lint', 'serve')
+    'styles', 'static',
+    gulp.parallel('lint', 'serve:dist')
   )
 );

@@ -24,7 +24,7 @@
       "angular-mocks": "npm:angular-mocks@^1.5.0-beta.0",
       "angular-sanitize": "github:angular/bower-angular-sanitize@^1.5.0-beta.0",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
-      "clean-css": "npm:clean-css@^3.4.3",
+      "clean-css": "npm:clean-css@^3.4.4",
       "css": "github:systemjs/plugin-css@^0.1.16",
       "normalize.css": "github:necolas/normalize.css@^3.0.3",
       "rx-angular": "npm:rx-angular@^0.0.14",
