@@ -1,5 +1,5 @@
 {
-  "name": "ng-jspm-starter",
+  "name": "FEDS",
   "version": "0.0.1",
   "description": "starter",
   "dependencies": {},
@@ -17,7 +17,6 @@
   "author": "DeAndre Johnson",
   "license": "MIT",
   "jspm": {
-    "directories": {},
     "configFile": "jspm.config.js",
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.5.0-beta.0",
@@ -33,7 +32,7 @@
     },
     "devDependencies": {
       "babel": "npm:babel-core@5.8.24",
-      "babel-runtime": "npm:babel-runtime@5.8.20",
+      "babel-runtime": "npm:babel-runtime@5.8.24",
       "core-js": "npm:core-js@^1.1.4"
     },
     "buildConfig": {

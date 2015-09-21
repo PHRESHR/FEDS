@@ -20,7 +20,7 @@ System.config({
     "angular-sanitize": "github:angular/bower-angular-sanitize@1.5.0-beta.0",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "babel": "npm:babel-core@5.8.24",
-    "babel-runtime": "npm:babel-runtime@5.8.20",
+    "babel-runtime": "npm:babel-runtime@5.8.24",
     "clean-css": "npm:clean-css@3.4.3",
     "core-js": "npm:core-js@1.1.4",
     "css": "github:systemjs/plugin-css@0.1.16",
@@ -83,7 +83,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.8.20": {
+    "npm:babel-runtime@5.8.24": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:buffer@3.4.3": {
