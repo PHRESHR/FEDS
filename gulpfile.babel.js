@@ -40,7 +40,7 @@ const paths = {
   dist: path.join(__dirname, 'dist/')
 };
 // Clean
-gulp.task('clean', done => del([paths.dist], {dot: true}, done));
+gulp.task('clean', done => del([paths.dist + '/**/*'], {dot: true}, done));
 
 // Style tasks
 let styleTask = (stylesPath, srcs) => {
@@ -154,7 +154,7 @@ gulp.task('dist',
 
 // Browser-sync Dist
 gulp.task('serve:dist',
-  gulp.parallel('lint', 'build', 'static', function serving() {
+  gulp.parallel('clean', 'lint', 'build', 'static', function serving() {
     serve({
       port: process.env.PORT || 3000,
       open: false,

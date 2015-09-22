@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title ng-bind="($title || 'App Title')">App Title</title>
+  <meta name="description" content={{::$description}}>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <meta property="fb:app_id" content="" />
+  <meta property="og:title" content={{$title}} />
+  <meta property="og:description" content={{$description}} />
+  <meta property="og:image" content={{$metaImg}} />
+  <meta property="og:url" content="{{$url}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="App Title" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@yourName" />
+  <meta name="twitter:creator" content="@yourName" />
+
+  <link rel="canonical" href="https://example.com">
+  <base href="/"></base>
+  <style>
+    html, body, app {
+      background-color: #111;
+      height: 100%;
+    }
+  </style>
+</head>
+<body layout="column">
+  <app layout="column" layout-fill>
+    <div class="loader">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
+  </app>
+  <script src="build.js"></script>
+</body>
+</html>
