@@ -23,7 +23,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.24",
     "clean-css": "npm:clean-css@3.4.4",
     "core-js": "npm:core-js@1.1.4",
-    "css": "github:systemjs/plugin-css@0.1.16",
+    "css": "github:systemjs/plugin-css@0.1.17",
     "normalize.css": "github:necolas/normalize.css@3.0.3",
     "rx-angular": "npm:rx-angular@0.0.14",
     "text": "github:systemjs/plugin-text@0.0.2",
@@ -72,7 +72,7 @@ System.config({
       "util": "npm:util@0.10.3"
     },
     "github:necolas/normalize.css@3.0.3": {
-      "css": "github:systemjs/plugin-css@0.1.16"
+      "css": "github:systemjs/plugin-css@0.1.17"
     },
     "npm:amdefine@1.0.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
