@@ -4,7 +4,7 @@ import Components from './components/components';
 
 const commonModule = angular.module('app.common', [
   Services.name,
-  Components.name,
+  Components.name
 ]);
 
 export default commonModule;
