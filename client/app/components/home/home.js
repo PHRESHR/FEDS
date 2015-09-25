@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import template from './home.html!text';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
@@ -37,7 +38,6 @@ class Home {
  */
   activate() {
     const test = this.TestService.getService();
-    this.$log.log(test);
     this.activated = true;
   }
 }

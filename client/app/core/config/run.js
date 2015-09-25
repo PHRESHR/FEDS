@@ -12,11 +12,6 @@ class OnRun {
       $rootScope.pageTitle = '';
       $rootScope.pageDesc = '';
 
-      // if (toState.resolve.$title()) {
-      //   $rootScope.pageTitle += toState.resolve.$title();
-      //   $rootScope.pageTitle += ' \u2014 ';
-      // }
-
       $rootScope.pageTitle = AppSettings.appTitle;
       $rootScope.pageDescription = AppSettings.appDescription;
 
@@ -36,7 +31,7 @@ class OnRun {
 
     const stateChangeStart = $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
       $log.log('Change Started:', new Date());
-      $log.log(fromState);
+      // $log.log(fromState);
     });
 
     const stateChangeError = $rootScope.$on('$stateChangeError', (event, next, previous, error) => {
@@ -51,12 +46,6 @@ class OnRun {
       stateChangeStart,
       stateChangeError
     ];
-
-    // $rootScope.$on('$destroy', () => {
-    //   unbind.forEach((fn) => {
-    //     fn();
-    //   });
-    // });
   }
 }
 

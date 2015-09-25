@@ -4,7 +4,8 @@
   padding: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-.toolbar .tool-links, .toolbar .logo {
+.toolbar .tool-links,
+.toolbar .logo {
   display: inline-block;
 }
 .toolbar .logo {
@@ -15,5 +16,3 @@
   color: #F5F5F5; /* lightTextColor */
   font-size: 1.6rem;
 }
-
-/*# sourceMappingURL=../../components/toolbar/toolbar.css.map */

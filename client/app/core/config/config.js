@@ -1,8 +1,8 @@
 import {Config, Inject} from '../decorators/decorators';
 class OnConfig {
   @Config()
-  @Inject('$provide', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$compileProvider', '$rootScopeProvider', '$logProvider', '$mdThemingProvider')
-  static configFactory($provide, $urlRouterProvider, $locationProvider, $httpProvider, $compileProvider, $rootScopeProvider, $logProvider, $mdThemingProvider) {
+  @Inject('$provide', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$compileProvider', '$rootScopeProvider', '$logProvider', '$mdThemingProvider', '$mdIconProvider')
+  static configFactory($provide, $urlRouterProvider, $locationProvider, $httpProvider, $compileProvider, $rootScopeProvider, $logProvider, $mdThemingProvider, $mdIconProvider) {
     function exceptionHandlerDecorator($delegate, $log) {
       $delegate = (excepetion, cause) => $log.error('caused by ' + cause);
 

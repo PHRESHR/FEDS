@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
@@ -8,6 +9,7 @@ import serve from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
 import fs from 'fs';
 import del from 'del';
+import precss from 'precss';
 import yargs from 'yargs';
 
 const $ = gulpLoadPlugins();
@@ -28,17 +30,51 @@ const resolveToComponents = (glob) => {
 // map of all paths
 const paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
-  css: resolveToApp('**/*.css'), // stylesheets
+  css: resolveToApp('**/_*.css'), // stylesheets
   html: [
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
   ],
+  static: path.join(root, 'static/**/*'),
   entry: path.join(root, 'app/bootstrap.js'),
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
   dist: path.join(__dirname, 'dist/')
 };
+
 // Clean
 gulp.task('clean', done => del([paths.dist], {dot: true}, done));
+
+// Style tasks
+const styleTask = (stylesPath, srcs) => {
+  const processors = [
+		// atCSS({
+		// 	from: 'client/app/styles/*.css'
+		// }),
+		precss()
+  ];
+  return gulp.src(srcs.map((src) => {
+      return path.join(root + '/app', stylesPath, src);
+    }))
+    .pipe($.newer(stylesPath, {extension: '.css'}))
+		.pipe($.sourcemaps.init())
+    .pipe($.postcss(processors).on('error', console.error.bind(console)))
+    .pipe($.rename((filepath) => {
+      filepath.basename = path.basename(filepath.dirname);
+    }))
+		.pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest(path.join(root, 'app')));
+};
+
+// Compile and Automatically Prefix Stylesheets
+gulp.task('styles', () => {
+  return styleTask('.', ['**/_*.css']);
+});
+
+gulp.task('static', () => {
+	// Optimize Images
+  return gulp.src(paths.static)
+		.pipe(gulp.dest(paths.dist));
+});
 
 // Lint JavaScript
 gulp.task('lint', () => {
@@ -51,46 +87,39 @@ gulp.task('lint', () => {
   .on('error', (e) => {
     const basePath = path.join(__dirname, root);
     const filename = e.fileName.substr(basePath.length + 1);
-
-    // notify.bug(
-    //   'Lint error: ' + e.message,
-    //   filename + ': ' + e.lineNumber
-    // );
   });
 });
 
-gulp.task('build', gulp.series('clean',  function building() {
-  const dist = path.join(paths.dist + 'app.js');
+gulp.task('build', () => {
+  const dist = path.join(paths.dist + 'build.js');
 
   const Builder = systemjsBuilder;
 	const builder = new Builder({
-    baseURL: 'client',
+    baseURL: './',
   });
 	builder.reset();
   builder.loadConfig("./jspm.config.js")
     .then(() => {
-      return jspm.bundleSFX(resolveToApp('bootstrap'), dist, {minify: true, mangle: false, sourceMaps: true})
-      .then(()=> {
+      return builder.buildStatic(resolveToApp('app.bootstrap'), dist, {minify: true, mangle: false, sourceMaps: true})
+      .then(() => {
         // Also create a fully annotated minified copy
         return gulp.src(dist)
-        // .pipe($.ngAnnotate())
-        // .pipe($.uglify())
-        .pipe($.rename('app.min.js'))
         .pipe(gulp.dest(paths.dist))
       })
       .then(()=> {
         // Inject minified script into index
         return gulp.src('client/index.html')
         .pipe($.htmlReplace({
-          'js': 'app.min.js'
+          'js': 'build.js'
         }))
+        // .pipe($.htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(paths.dist));
       });
     })
-}));
+});
 
 // Browser-sync
-gulp.task('serve', () => {
+gulp.task('serve', gulp.series('styles', () => {
   serve({
     port: process.env.PORT || 3000,
     open: false,
@@ -100,7 +129,7 @@ gulp.task('serve', () => {
       paths.html
     ),
     server: {
-      baseDir: root,
+      baseDir: [root, root + '/static'],
       // serve our jspm dependencies with the client folder
       routes: {
         '/jspm.config.js': './jspm.config.js',
@@ -114,34 +143,40 @@ gulp.task('serve', () => {
     ]
   });
 
-  gulp.watch(
-    [paths.html, paths.css, paths.js]
-  )
-  .on('change', gulp.parallel('lint', reload));
-});
+  gulp.watch( paths.html).on('change', reload);
+  gulp.watch( paths.css).on('change', gulp.series('styles', reload));
+  gulp.watch( paths.js).on('change', gulp.series('lint', reload));
+}));
 
-gulp.task('dist', gulp.series('clean', 'build'));
+gulp.task('dist',
+  gulp.series(
+    'clean',
+    gulp.parallel('static', 'build')
+  )
+);
 
 // Browser-sync Dist
-gulp.task('serve:dist', gulp.parallel('build', function serving() {
-  serve({
-    port: process.env.PORT || 3000,
-    open: false,
-    notify: false,
-    logPrefix: 'FEDS',
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: 'dist',
-    baseDir: 'dist',
-    middleware: [
-      modRewrite([
-        '^([^.]+)$ /index.html [L]'
-      ])
-    ]
-  });
-}));
+gulp.task('serve:dist',
+  gulp.parallel('clean', 'styles', 'lint', 'build', 'static', () => {
+    serve({
+      port: process.env.PORT || 3000,
+      open: false,
+      notify: false,
+      logPrefix: 'FEDS',
+      // Run as an https by uncommenting 'https: true'
+      // Note: this uses an unsigned certificate which on first access
+      // will present a certificate warning in the browser.
+      // https: true,
+      server: 'dist',
+      baseDir: 'dist',
+      middleware: [
+        modRewrite([
+          '^([^.]+)$ /index.html [L]'
+        ])
+      ]
+    });
+  })
+);
 
 gulp.task('component', () => {
   const cap = (val) => {

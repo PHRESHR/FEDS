@@ -9,14 +9,18 @@ import {Component, View, Inject} from '../../core/decorators/decorators';
 @View({
   template: template
 })
-@Inject('$mdSidenav', '$log')
+@Inject('$timeout', '$mdSidenav', '$mdUtil', '$log')
 // end-non-standard
 
 // Toolbar Controller
 class Toolbar {
-  constructor($mdSidenav, $log) {
+  constructor($timeout, $mdSidenav, $mdUtil, $log) {
+    this.$timeout = $timeout;
+    this.$mdSidenav = $mdSidenav;
+    this.$mdUtil = $mdUtil;
+    this.$log = $log;
+
     this.name = 'toolbar';
-    this.openLeftMenu = () => $mdSidenav('left').toggle();
     this.activated = false;
     // On load
     this.activate();
@@ -26,6 +30,18 @@ class Toolbar {
    * Handles on load processing, and loading initial data
  */
   activate() {
+    const buildToggler = (navID) => {
+      navID = navID || 'left';
+      const debounceFn =  this.$mdUtil.debounce(() => {
+        this.$mdSidenav(navID)
+          .toggle()
+          .then(() => {
+            this.$log.log('Sidenav toggle(' + navID + ') initialized');
+          });
+      }, 200);
+      return debounceFn;
+    };
+    this.openLeftMenu = buildToggler('left');
 
     this.activated = true;
   }
