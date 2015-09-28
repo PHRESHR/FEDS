@@ -1,19 +1,50 @@
+@import '../../styles/styles.css';
+
 sidenav {
   height: 100vh;
-}
-.md-sidenav-left {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
 
-.md-sidenav-left {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  background-color: #1d1d1d;
-}
+  .md-sidenav-left {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    background-color: #1d1d1d;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
 
-.md-sidenav-left.md-locked-open {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
+  .md-sidenav-left.md-locked-open {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .logo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0 auto;
+    border-bottom: none;
+  }
+  .nav {
+
+    .nav-item {
+      font-weight: normal;
+      text-align: left;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: var(--lg-pad) var(--sm-pad);
+      border-bottom: 1px solid #252525;
+
+      transition-property: background-color;
+      transition-duration: .5s;
+      transition-timing-function: linear;
+
+      &:hover {
+        background-color: var(--brandBlack);
+      }
+    }
+  }
 }

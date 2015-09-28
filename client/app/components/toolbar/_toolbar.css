@@ -1,18 +1,35 @@
+@import '../../styles/styles.css';
+
 .toolbar {
   height: 65px;
   background-color: inherit;
   padding: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-.toolbar .tool-links,
-.toolbar .logo {
-  display: inline-block;
-}
-.toolbar .logo {
-  color: #F5F5F5; /* lightTextColor */
-  /*margin-right: 50%;*/
-}
-.toolbar .tool-links span {
-  color: #F5F5F5; /* lightTextColor */
-  font-size: 1.6rem;
+
+  .logo {
+    color: var(--brandWhite);
+    display: inline-block;
+  }
+
+  .brand-name {
+    color: var(--brandWhite);
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 300;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @media (--medium) {
+      font-size: 26px;
+    }
+
+    span {
+      color: var(--brandRed);
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: bold;
+    }
+  }
+  .menu-button {
+    min-width: 50px;
+  }
 }

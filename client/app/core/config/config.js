@@ -3,12 +3,12 @@ class OnConfig {
   @Config()
   @Inject('$provide', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$compileProvider', '$rootScopeProvider', '$logProvider', '$mdThemingProvider', '$mdIconProvider')
   static configFactory($provide, $urlRouterProvider, $locationProvider, $httpProvider, $compileProvider, $rootScopeProvider, $logProvider, $mdThemingProvider, $mdIconProvider) {
-    function exceptionHandlerDecorator($delegate, $log) {
-      $delegate = (excepetion, cause) => $log.error('caused by ' + cause);
-
-      return $delegate;
-    }
-    $provide.decorator('$exceptionHandler', exceptionHandlerDecorator);
+    // function exceptionHandlerDecorator($delegate, $log) {
+    //   $delegate = (excepetion, cause) => $log.error('caused by ' + cause);
+    //
+    //   return $delegate;
+    // }
+    // $provide.decorator('$exceptionHandler', exceptionHandlerDecorator);
     $httpProvider.useApplyAsync(true);
     $logProvider.debugEnabled(false);
     $compileProvider.debugInfoEnabled(false);

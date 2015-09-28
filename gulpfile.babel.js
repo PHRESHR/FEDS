@@ -9,7 +9,13 @@ import serve from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
 import fs from 'fs';
 import del from 'del';
+import importCSS from 'postcss-import';
+import nested from 'postcss-nested';
+import mixins from 'postcss-mixins';
+import cssnext from 'cssnext';
 import precss from 'precss';
+import lost from 'lost';
+import calc from 'postcss-calc'
 import yargs from 'yargs';
 
 const $ = gulpLoadPlugins();
@@ -47,10 +53,15 @@ gulp.task('clean', done => del([paths.dist], {dot: true}, done));
 // Style tasks
 const styleTask = (stylesPath, srcs) => {
   const processors = [
-		// atCSS({
+    // importCSS({
 		// 	from: 'client/app/styles/*.css'
 		// }),
-		precss()
+		// mixins(),
+		// nested(),
+		// cssnext(),
+		precss(),
+		lost(),
+    calc(),
   ];
   return gulp.src(srcs.map((src) => {
       return path.join(root + '/app', stylesPath, src);

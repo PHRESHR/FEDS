@@ -1,0 +1,147 @@
+/* typography */
+@define-mixin font-common-base {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@define-mixin font-nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@define-mixin font-base $weight, $height {
+  font-weight: $weight;
+  line-height: $height;
+}
+
+@define-mixin font-display-4 {
+  @mixin font-common-base;
+  @mixin font-nowrap;
+
+  @mixin font-base 300, 1.0714;
+  font-size: var(--font-display-4);
+  letter-spacing: -.044rem;
+}
+
+@define-mixin font-display-3 {
+  @mixin font-common-base;
+  @mixin font-nowrap;
+
+  @mixin font-base 400, 0.9333;
+  font-size: var(--font-display-3);
+  letter-spacing: -.026rem;
+}
+
+@define-mixin font-display-2 {
+  @mixin font-common-base;
+
+  @mixin font-base 400, 0.9375;
+  font-size: var(--font-display-2);
+  letter-spacing: -.018rem;
+}
+
+@define-mixin font-display-1 {
+  @mixin font-common-base;
+
+  @mixin font-base 400, 0.85;
+  font-size: var(--font-display-1);
+  letter-spacing: -.01rem;
+}
+
+@define-mixin font-headline {
+  @mixin font-common-base;
+
+  @mixin font-base 400, 32px;
+  font-size: var(--font-headline);
+  letter-spacing: -.012rem;
+}
+
+@define-mixin font-title {
+  @mixin font-common-base;
+  @mixin font-nowrap;
+
+  @mixin font-base 500, 28px;
+  font-size: var(--font-title);
+}
+
+@define-mixin font-subhead {
+  @mixin font-common-base;
+
+  @mixin font-base 400, 24px;
+  font-size: var(--font-subhead);
+}
+
+@define-mixin font-body-2 {
+  @mixin font-common-base;
+
+  @mixin font-base 500, 24px;
+  font-size: var(--font-body);
+}
+
+@define-mixin font-body-1 {
+  @mixin font-common-base;
+
+  @mixin font-base 400, 20px;
+  font-size: var(--font-body);
+}
+
+@define-mixin font-caption {
+  @mixin font-common-base;
+  @mixin font-nowrap;
+
+  @mixin font-base 400, 20px;
+  font-size: var(--font-caption);
+  letter-spacing: 0.011rem;
+}
+
+@define-mixin font-button {
+  @mixin font-common-base;
+  @mixin font-nowrap;
+
+  @mixin font-base 400, 24px;
+  font-size: var(--font-button);
+  letter-spacing: 0.018rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Mixins*/
+@define-mixin sidePadding {
+  padding-left: var(--lg-pad);
+  padding-right: var(--lg-pad);
+}
+
+/* Centering*/
+@define-mixin vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@define-mixin vertical-align-fix {
+  top: -50%;
+  transform: translateY(50%);
+}
+
+@define-mixin no-vertical-align {
+  position: relative;
+  top: 0%;
+  transform: translateY(0%);
+  top: 0%;
+  transform: translateY(0%);
+}
+
+@define-mixin centerEl {
+  margin: 0 auto;
+}
+
+/* Helpers*/
+@define-mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
