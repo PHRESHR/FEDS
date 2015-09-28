@@ -2,7 +2,6 @@
   "name": "ng-jspm-starter",
   "version": "0.0.1",
   "description": "starter",
-  "dependencies": {},
   "scripts": {
     "info": "echo 'npm as a build tool'",
     "lint": "eslint -c .eslintrc src",
@@ -27,8 +26,11 @@
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
       "clean-css": "npm:clean-css@^3.4.3",
       "css": "github:systemjs/plugin-css@^0.1.17",
+      "falcor": "npm:falcor@^0.1.13",
+      "falcor-http-datasource": "npm:falcor-http-datasource@^0.1.2",
       "lodash": "npm:lodash@^3.10.1",
       "normalize.css": "github:necolas/normalize.css@^3.0.3",
+      "rx": "npm:rx@^4.0.0",
       "rx-angular": "npm:rx-angular@^0.0.14",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
@@ -84,5 +86,12 @@
     "run-sequence": "^1.1.2",
     "systemjs-builder": "^0.14.6",
     "yargs": "^3.24.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "falcor-express": "^0.1.2",
+    "falcor-json-graph": "^1.1.5",
+    "falcor-router": "^0.2.9"
   }
 }

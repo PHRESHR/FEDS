@@ -25,8 +25,11 @@ System.config({
     "clean-css": "npm:clean-css@3.4.3",
     "core-js": "npm:core-js@1.1.4",
     "css": "github:systemjs/plugin-css@0.1.17",
+    "falcor": "npm:falcor@0.1.13",
+    "falcor-http-datasource": "npm:falcor-http-datasource@0.1.2",
     "lodash": "npm:lodash@3.10.1",
     "normalize.css": "github:necolas/normalize.css@3.0.3",
+    "rx": "npm:rx@4.0.0",
     "rx-angular": "npm:rx-angular@0.0.14",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:angular-ui/ui-router@0.2.15": {
@@ -48,7 +51,10 @@ System.config({
       "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
-      "buffer": "npm:buffer@3.4.3"
+      "buffer": "npm:buffer@3.5.0"
+    },
+    "github:jspm/nodelibs-domain@0.1.0": {
+      "domain-browser": "npm:domain-browser@1.1.4"
     },
     "github:jspm/nodelibs-events@0.1.1": {
       "events": "npm:events@1.0.2"
@@ -91,13 +97,17 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:asap@2.0.3": {
+      "domain": "github:jspm/nodelibs-domain@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
     "npm:babel-runtime@5.8.24": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:buffer@3.4.3": {
+    "npm:buffer@3.5.0": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
@@ -131,6 +141,27 @@ System.config({
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
     },
+    "npm:domain-browser@1.1.4": {
+      "events": "github:jspm/nodelibs-events@0.1.1"
+    },
+    "npm:falcor-http-datasource@0.1.2": {
+      "xmlhttprequest": "npm:xmlhttprequest@1.7.0"
+    },
+    "npm:falcor-json-graph@1.1.5": {
+      "falcor-path-syntax": "npm:falcor-path-syntax@0.2.1"
+    },
+    "npm:falcor@0.1.13": {
+      "asap": "npm:asap@2.0.3",
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "falcor-json-graph": "npm:falcor-json-graph@1.1.5",
+      "falcor-path-syntax": "npm:falcor-path-syntax@0.2.1",
+      "falcor-path-utils": "npm:falcor-path-utils@0.3.4",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "promise": "npm:promise@7.0.4",
+      "rx": "npm:rx@4.0.0",
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
     "npm:graceful-readlink@1.0.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
@@ -149,6 +180,10 @@ System.config({
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:promise@7.0.4": {
+      "asap": "npm:asap@2.0.3",
+      "fs": "github:jspm/nodelibs-fs@0.1.2"
+    },
     "npm:punycode@1.3.2": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
@@ -163,9 +198,9 @@ System.config({
       "string_decoder": "npm:string_decoder@0.10.31"
     },
     "npm:rx-angular@0.0.14": {
-      "rx": "npm:rx@3.1.2"
+      "rx": "npm:rx@4.0.0"
     },
-    "npm:rx@3.1.2": {
+    "npm:rx@4.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:source-map@0.4.4": {
@@ -189,6 +224,15 @@ System.config({
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:xmlhttprequest@1.7.0": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "http": "github:jspm/nodelibs-http@1.7.1",
+      "https": "github:jspm/nodelibs-https@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "url": "github:jspm/nodelibs-url@0.1.0"
     }
   }
 });
