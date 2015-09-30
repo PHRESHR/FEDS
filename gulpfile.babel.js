@@ -12,6 +12,7 @@ import del from 'del';
 import nested from 'postcss-nested';
 import mixins from 'postcss-mixins';
 import precss from 'precss';
+import fontMagician from 'postcss-font-magician';
 import lost from 'lost';
 import calc from 'postcss-calc'
 import yargs from 'yargs';
@@ -54,6 +55,9 @@ const styleTask = (stylesPath, srcs) => {
 		precss(),
 		lost(),
     calc(),
+    fontMagician({
+      foundries: 'google'
+    })
   ];
   return gulp.src(srcs.map((src) => {
       return path.join(root + '/app', stylesPath, src);
