@@ -4,3 +4,4 @@ gulpfile.js
 gulpfile.babel.js
 jspm.config.js
 client/app/generator/component/*
+server/*

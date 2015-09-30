@@ -8,7 +8,7 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
   resolve: {
     // Constant Meta
     $title: () => 'About',
-    $description: () => 'My App description'
+    $description: () => 'About description'
   }
 })
 @Component({

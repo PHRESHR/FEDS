@@ -9,10 +9,8 @@ import serve from 'browser-sync';
 import modRewrite from 'connect-modrewrite';
 import fs from 'fs';
 import del from 'del';
-import importCSS from 'postcss-import';
 import nested from 'postcss-nested';
 import mixins from 'postcss-mixins';
-import cssnext from 'cssnext';
 import precss from 'precss';
 import lost from 'lost';
 import calc from 'postcss-calc'
@@ -20,7 +18,7 @@ import yargs from 'yargs';
 
 const $ = gulpLoadPlugins();
 const reload = ()=> serve.reload();
-const root = 'client';
+const root = 'src';
 
 // helper method for resolving paths
 const resolveToApp = (glob) => {
@@ -44,7 +42,7 @@ const paths = {
   static: path.join(root, 'static/**/*'),
   entry: path.join(root, 'app/bootstrap.js'),
   blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
-  dist: path.join(__dirname, 'dist/')
+  dist: path.join(__dirname, 'public/')
 };
 
 // Clean
@@ -53,12 +51,6 @@ gulp.task('clean', done => del([paths.dist], {dot: true}, done));
 // Style tasks
 const styleTask = (stylesPath, srcs) => {
   const processors = [
-    // importCSS({
-		// 	from: 'client/app/styles/*.css'
-		// }),
-		// mixins(),
-		// nested(),
-		// cssnext(),
 		precss(),
 		lost(),
     calc(),
@@ -116,15 +108,6 @@ gulp.task('build', () => {
         // Also create a fully annotated minified copy
         return gulp.src(dist)
         .pipe(gulp.dest(paths.dist))
-      })
-      .then(()=> {
-        // Inject minified script into index
-        return gulp.src('client/index.html')
-        .pipe($.htmlReplace({
-          'js': 'build.js'
-        }))
-        // .pipe($.htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest(paths.dist));
       });
     })
 });
