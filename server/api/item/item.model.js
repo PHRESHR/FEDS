@@ -1,4 +1,4 @@
-import mongoose from 'mongoose',
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
@@ -7,4 +7,4 @@ const ItemSchema = new Schema({
   active: Boolean
 });
 
-export mongoose.model('Item', ItemSchema);
+mongoose.model('Item', ItemSchema);

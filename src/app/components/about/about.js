@@ -17,12 +17,16 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 @View({
   template: template
 })
-@Inject('$log')
+@Inject('$scope', '$http', '$log')
 // end-non-standard
 
 // About Controller
 class About {
-  constructor() {
+  constructor($scope, $http, $log) {
+    this.$http = $http;
+    this.$log = $log;
+    this.items = [];
+    this.abouttext = [];
     this.name = 'about';
     this.activated = false;
     // On load
@@ -33,7 +37,14 @@ class About {
    * Handles on load processing, and loading initial data
  */
   activate() {
-
+    this.$http.get('/api/items').success((items) => {
+      this.items = items;
+      this.$log.log(items);
+    });
+    this.$http.get('/api/abouttext').success((text) => {
+      this.abouttext = text;
+      this.$log.log(text);
+    });
     this.activated = true;
   }
 }

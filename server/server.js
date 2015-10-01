@@ -15,8 +15,11 @@ import chalk from 'chalk';
 import * as prismic from './config/prismic-helpers';
 
 import routes from './routes/index';
+import items from './api/item';
+import abouttext from './api/abouttext';
 
-// console.log(prismic);
+console.log(items);
+
 const client = redis.createClient();
 const app = express();
 
@@ -54,6 +57,9 @@ client.on('connect', () => {
 });
 
 app.use('/', routes);
+app.use('/api/items', items);
+app.use('/api/abouttext', abouttext);
+app.use('/*', routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

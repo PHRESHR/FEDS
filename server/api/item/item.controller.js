@@ -1,14 +1,15 @@
 import Prismicio from 'prismic.io';
 import * as prismic from '../../config/prismic-helpers';
 import _ from 'lodash';
-import Item from './item.model';
+
+const Prismic = Prismicio.Prismic;
 
 export const index = prismic.route((req, res, ctx) => {
   const pagenum = req.params['pagenum'];
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.type", "item"))
+  .query(Prismic.Predicates.at("document.type", "item"))
   .pageSize(100)
   .submit((err, items) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -21,7 +22,7 @@ export const page = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.type", "item"))
+  .query(Prismic.Predicates.at("document.type", "item"))
   .pageSize(100)
   .page(pagenum)
   .submit((err, items) => {
@@ -35,7 +36,7 @@ export const art = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.any("document.tags", ["art"]))
+  .query(Prismic.Predicates.any("document.tags", ["art"]))
   .pageSize(100).page(pagenum)
   .submit((err, arts) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -47,7 +48,7 @@ export const institution = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.tags", ["art", "institution"]))
+  .query(Prismic.Predicates.at("document.tags", ["art", "institution"]))
   .pageSize(100)
   .submit((err, institutions) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -59,7 +60,7 @@ export const artist = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.tags", ["art", "artist"]))
+  .query(Prismic.Predicates.at("document.tags", ["art", "artist"]))
   .pageSize(100)
   .submit((err, artists) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -71,7 +72,7 @@ export const artcollaboration = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.tags", ["art", "collaboration"]))
+  .query(Prismic.Predicates.at("document.tags", ["art", "collaboration"]))
   .pageSize(100)
   .submit((err, artcollaborations) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -84,7 +85,7 @@ export const culture = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.any("document.tags", ["culture"]))
+  .query(Prismic.Predicates.any("document.tags", ["culture"]))
   .pageSize(100)
   .page(pagenum)
   .submit((err, cultures) => {
@@ -97,7 +98,7 @@ export const editorial = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.tags", ["culture", "editorial"]))
+  .query(Prismic.Predicates.at("document.tags", ["culture", "editorial"]))
   .pageSize(100)
   .submit((err, editorials) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -109,7 +110,7 @@ export const commercial = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.tags", ["culture", "commercial"]))
+  .query(Prismic.Predicates.at("document.tags", ["culture", "commercial"]))
   .pageSize(100)
   .submit((err, editorials) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -121,7 +122,7 @@ export const culturecollaboration = prismic.route((req, res, ctx) => {
   ctx.api
   .form('everything')
   .ref(ctx.ref)
-  .query(prismicIo.Predicates.at("document.tags", ["culture", "collaboration"]))
+  .query(Prismic.Predicates.at("document.tags", ["culture", "collaboration"]))
   .pageSize(100)
   .submit((err, culturecollaborations) => {
     if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -141,7 +142,7 @@ export const detail = prismic.route((req, res, ctx) => {
       // });
       res.json(200, item);
     },
-    (item) => res.redirect(301, ctx.linkResolver(doc));
+    (item) => res.redirect(301, ctx.linkResolver(doc)),
     (NOT_FOUND) => res.send(404, 'Sorry, we cannot find that!'));
 });
 

@@ -3,11 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', {
-    title: 'Tomorrow Pictures',
-    description: 'Your Page Description',
-    analytics: 'XXXXXXX'
-  });
+  res.render('index');
 });
 
 // All other routes should redirect to the index.html

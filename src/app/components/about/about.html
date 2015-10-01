@@ -1,4 +1,8 @@
-<main ng-if="vm.activated">
+<main ng-if="::vm.activated">
 	<h1>you can find me in {{ vm.name }}.html</h1>
+	<article ng-repeat="text in ::vm.abouttext.results track by text.id" ng-if="$index < 1">
+	  <h1>{{::text.fragments['abouttext.title'].value[0].text}}</h1>
+	  <p>{{::text.fragments['abouttext.text'].value[0].text}}</p>
+	</article>
 </main>
-<div ng-if="!vm.activated">Loading Data...</div>
+<div ng-if="::!vm.activated">Loading Data...</div>
