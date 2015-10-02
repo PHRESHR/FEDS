@@ -9,7 +9,8 @@ const Prismic = Prismicio.Prismic;
 
 export const previewCookie = Prismic.previewCookie;
 
-// -- Helpers
+// -- Exposing as a helper what to do in the event of an error (please edit prismic-configuration.js to change this)
+export const onPrismicError = Configuration.onPrismicError;
 
 export const getApiHome = (accessToken, callback) => {
   Prismic.Api(Configuration.apiEndpoint, callback, accessToken);
@@ -72,9 +73,6 @@ export const getBookmark = (ctx, bookmark, callback) => {
     callback();
   }
 };
-
-// -- Exposing as a helper what to do in the event of an error (please edit prismic-configuration.js to change this)
-export const onPrismicError = Configuration.onPrismicError;
 
 // -- Route wrapper that provide a "prismic context" to the underlying function
 

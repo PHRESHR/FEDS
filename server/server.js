@@ -16,6 +16,7 @@ import * as prismic from './config/prismic-helpers';
 
 import routes from './routes/index';
 import videos from './api/video';
+import searches from './api/search';
 // import items from './api/item';
 // import about from './api/about';
 
@@ -60,6 +61,7 @@ client.on('connect', () => {
 // Routes & API
 app.use('/', routes);
 app.use('/api/video', videos);
+app.use('/api/search', searches);
 // app.use('/api/items', items);
 // app.use('/api/about', about);
 app.use('/*', routes);
