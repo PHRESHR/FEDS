@@ -17,8 +17,7 @@ export const getApiHome = (accessToken, callback) => {
 
 export const getDocumentByUID = (ctx, type, uid, onThen, onNotFound) => {
   console.log(Prismic.Predicates.at('my.' + type + '.uid', uid));
-  ctx.api
-  .forms('everything')
+  ctx.api.forms('everything')
   .ref(ctx.ref)
   .query(Prismic.Predicates.at('my.' + type + '.uid', uid))
   .submit((err, response) => {
@@ -36,15 +35,14 @@ export const getDocumentByUID = (ctx, type, uid, onThen, onNotFound) => {
 };
 
 export const getDocument = (ctx, id, slug, onThen, onNewSlug, onNotFound) => {
-  ctx.api
-  .forms('everything')
+  ctx.api.forms('everything')
   .ref(ctx.ref)
   .query('[[:d = at(document.id, "' + id + '")]]')
   .submit((err, response) => {
     const results = response.results;
     const doc = results && results.length ? results[0] : undefined;
     if (err) onThen(err);
-    else if(doc && (!slug || doc.slug == slug)) onDone(null, doc);
+    else if(doc && (!slug || doc.slug == slug)) onThen(null, doc);
     else if(doc && doc.slugs.indexOf(slug) > -1 && onNewSlug) onNewSlug(doc);
     else if(onNotFound) onNotFound();
     else onThen();
@@ -53,9 +51,9 @@ export const getDocument = (ctx, id, slug, onThen, onNewSlug, onNotFound) => {
 
 export const getDocuments = (ctx, ids, callback) => {
   if (ids && ids.length) {
-    ctx.api
-    .forms('everything')
-    .ref(ctx.ref).query('[[:d = any(document.id, [' + ids.map((id) => {
+    ctx.api.forms('everything')
+    .ref(ctx.ref)
+    .query('[[:d = any(document.id, [' + ids.map((id) => {
       return '"' + id + '"';
     }).join(',') + '])]]')
     .submit((err, response) => {

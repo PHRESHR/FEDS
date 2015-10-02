@@ -1,0 +1,6 @@
+<div>
+	<h1>{{ vm.name }}</h1>
+	<article ng-repeat="video in vm.results track by video.id">
+	  <h1>{{::video.fragments['video.title'].value[0].text}}</h1>
+	</article>
+</div>

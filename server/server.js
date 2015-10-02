@@ -15,10 +15,11 @@ import chalk from 'chalk';
 import * as prismic from './config/prismic-helpers';
 
 import routes from './routes/index';
-import items from './api/item';
-import abouttext from './api/abouttext';
+import videos from './api/video';
+// import items from './api/item';
+// import about from './api/about';
 
-console.log(items);
+console.log(videos);
 
 const client = redis.createClient();
 const app = express();
@@ -56,9 +57,11 @@ client.on('connect', () => {
   console.log(chalk.blue('Redis is connected'));
 });
 
+// Routes & API
 app.use('/', routes);
-app.use('/api/items', items);
-app.use('/api/abouttext', abouttext);
+app.use('/api/video', videos);
+// app.use('/api/items', items);
+// app.use('/api/about', about);
 app.use('/*', routes);
 
 // catch 404 and forward to error handler

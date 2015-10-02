@@ -23,12 +23,14 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 // About Controller
 class About {
   constructor($scope, $http, $log) {
-    this.$http = $http;
-    this.$log = $log;
-    this.items = [];
-    this.abouttext = [];
-    this.name = 'about';
-    this.activated = false;
+    Object.assign(this, {
+      $scope,
+      $http,
+      $log,
+      apiHost: '/api',
+      name: 'about',
+      activated: false
+    });
     // On load
     this.activate();
   }
@@ -37,14 +39,6 @@ class About {
    * Handles on load processing, and loading initial data
  */
   activate() {
-    this.$http.get('/api/items').success((items) => {
-      this.items = items;
-      this.$log.log(items);
-    });
-    this.$http.get('/api/abouttext').success((text) => {
-      this.abouttext = text;
-      this.$log.log(text);
-    });
     this.activated = true;
   }
 }

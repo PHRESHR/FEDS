@@ -29,21 +29,23 @@ body {
 
     font-style: normal;
 
-    font-weight: 300;
+    font-weight: 300
 }
 
-a {}
+a {
+
+}
 
 a:link, a:visited, a:active {
 
     color: #c0392b;
 
-    transition: .25s ease;
+    transition: .25s ease
 }
 
 a:link, a:visited, a:active {
 
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -52,51 +54,51 @@ h1, h2, h3, h4, h5, h6 {
 
     font-weight: 700;
 
-    margin: 0;
+    margin: 0
 }
 
 h1 {
 
-    font-size: 2.25rem;
+    font-size: 2.25rem
 }
 
 h2 {
 
-    font-size: 1.875rem;
+    font-size: 1.875rem
 }
 
 h3 {
 
-    font-size: 1.5rem;
+    font-size: 1.5rem
 }
 
 h4 {
 
-    font-size: 1.125rem;
+    font-size: 1.125rem
 }
 
 h5 {
 
-    font-size: 1rem;
+    font-size: 1rem
 }
 
 h6 {
 
     color: #777;
 
-    font-size: 0.875rem;
+    font-size: 0.875rem
 }
 
 p {
 
-    padding: .8rem 0;
+    padding: .8rem 0
 }
 
 p.lead {
 
     font-size: 2.25rem;
 
-    padding: 1rem 0;
+    padding: 1rem 0
 }
 
 /*p + p {
@@ -105,7 +107,7 @@ p.lead {
 
 small {
 
-    color: #777;
+    color: #777
 }
 
 pre {
@@ -126,7 +128,7 @@ pre {
 
     word-break: break-all;
 
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 code {
@@ -141,24 +143,24 @@ code {
 
     word-break: break-all;
 
-    word-wrap: break-word;
+    word-wrap: break-word
 }
 
 dl {
 
-    margin-bottom: 1rem;
+    margin-bottom: 1rem
 }
 
 dd {
 
-    margin-left: 2.5rem;
+    margin-left: 2.5rem
 }
 
 ul, ol {
 
     margin-bottom: 0.8rem;
 
-    padding-left: 1.25rem;
+    padding-left: 1.25rem
 }
 
 blockquote {
@@ -171,12 +173,12 @@ blockquote {
 
     margin: 1rem 0;
 
-    padding-left: 1rem;
+    padding-left: 1rem
 }
 
 figcaption {
 
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: Georgia, Times, 'Times New Roman', serif
 }
 
 html, body, button {
@@ -185,22 +187,22 @@ html, body, button {
 
     -webkit-font-smoothing: antialiased;
 
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility
 }
 
 html {
 
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 *, *:before, *:after {
 
-    box-sizing: inherit;
+    box-sizing: inherit
 }
 
 html {
 
-    font-size: 100%;
+    font-size: 100%
 }
 
 html, body {
@@ -211,7 +213,7 @@ html, body {
 
     margin: 0;
 
-    padding: 0;
+    padding: 0
 }
 
 body {
@@ -220,7 +222,7 @@ body {
 
     min-height: 100%;
 
-    padding: 0;
+    padding: 0
 }
 
 main, header, footer, article, section, aside, details, summary {
@@ -231,26 +233,26 @@ main, header, footer, article, section, aside, details, summary {
 
     margin: 0 auto;
 
-    width: 100%;
+    width: 100%
 }
 
 article {
 
     margin-bottom: 1rem;
 
-    max-width: calc(60% - 1rem);
+    max-width: calc(60% - 1rem)
 }
 
 aside {
 
     margin-bottom: 1rem;
 
-    max-width: calc(40% - 1rem);
+    max-width: calc(40% - 1rem)
 }
 
 section {
 
-    max-width: 100%;
+    max-width: 100%
 }
 
 footer {
@@ -261,7 +263,7 @@ footer {
 
     padding: 1rem 0;
 
-    text-align: center;
+    text-align: center
 }
 
 hr {
@@ -272,7 +274,7 @@ hr {
 
     margin-bottom: 1rem;
 
-    width: 100%;
+    width: 100%
 }
 
 img {
@@ -281,7 +283,7 @@ img {
 
     max-width: 100%;
 
-    vertical-align: baseline;
+    vertical-align: baseline
 }
 
 @media (max-width: 640px) {
@@ -292,84 +294,17 @@ img {
 
         display: block;
 
-        max-width: 100%;
+        max-width: 100%
     }
 }
 
 img, video, object {
 
-    max-width: 100%;
+    max-width: 100%
 }
 
-/*height: 100vh;*/
+videolist {
 
-sidenav .md-sidenav-left {
-
-    width: 150px;
-
-    min-width: 150px;
-
-    max-width: 150px;
-
-    background-color: #1d1d1d;
-
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-sidenav .md-sidenav-left.md-locked-open {
-
-    width: 150px;
-
-    min-width: 150px;
-
-    max-width: 150px;
-}
-
-sidenav .logo {
-
-    text-align: center;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    padding: 0;
-
-    margin: 0 auto;
-
-    border-bottom: none;
-}
-
-sidenav .nav .nav-item {
-
-    font-weight: normal;
-
-    text-align: left;
-
-    text-transform: uppercase;
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: flex-start;
-
-    padding: 1.25rem .8rem;
-
-    border-bottom: 1px solid #252525;
-
-    transition-property: background-color;
-
-    transition-duration: .5s;
-
-    transition-timing-function: linear;
-}
-
-sidenav .nav .nav-item:hover {
-
-    background-color: #111111;
-}
-
-/*# sourceMappingURL=../../components/sidenav/sidenav.css.map */
+/*# sourceMappingURL=../../components/videolist/videolist.css.map */

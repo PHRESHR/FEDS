@@ -1,5 +1,6 @@
 import '../../components/sidenav/sidenav';
 import '../../components/toolbar/toolbar';
+import '../../components/videolist/videolist';
 import '../../components/home/home';
 import '../../components/about/about';
 import template from './app.html!text';
@@ -17,6 +18,9 @@ import {RouteConfig, View, Component, Inject} from '../../core/decorators/decora
 // end-non-standard
 class AppComponent {
   constructor($log) {
+    Object.assign(this, {
+      $log
+    });
     $log.log('App Container');
   }
 }

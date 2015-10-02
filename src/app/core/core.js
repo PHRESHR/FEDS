@@ -5,3 +5,4 @@ import './config/run';
 
 // import './resources/resources';
 import './services/test';
+import './services/videos';
