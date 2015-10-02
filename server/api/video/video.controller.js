@@ -4,21 +4,6 @@ import _ from 'lodash';
 
 const Prismic = Prismicio.Prismic;
 
-// // Get list of Videos
-// export const index = prismic.route(wrap(async (req, res) => {
-//   // handle data
-//   console.log('initializing Data');
-//   let data = await ctx.api.form('everything')
-//   .set('pageSize', '21')
-//   .ref(ctx.ref)
-//   .query(Prismic.Predicates.at('document.type', 'video'))
-//   .submit((err, videos) => {
-//     if (err) { prismic.onPrismicError(err, req, res); return; }
-//     res.status(200).json(videos);
-//   });
-//   return data;
-// }));
-
 // Get list of Videos
 export const index = prismic.route((req, res, ctx) => {
   ctx.api.form('everything')

@@ -237,21 +237,14 @@ main, header, footer, article, section, aside, details, summary {
 article {
 
     margin-bottom: 1rem;
-
-    max-width: calc(60% - 1rem);
 }
 
 aside {
 
     margin-bottom: 1rem;
-
-    max-width: calc(40% - 1rem);
 }
 
-section {
-
-    max-width: 100%;
-}
+section {}
 
 footer {
 
