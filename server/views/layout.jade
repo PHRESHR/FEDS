@@ -18,6 +18,12 @@ html
 
     base(href="/")
     
+    // Required for Previews and Experiments
+    script(src="//code.jquery.com/jquery-1.11.3.min.js")
+    script
+      = ctx?"window.prismic = { endpoint: '" + ctx.endpoint + "' };":""
+    script(src="//static.cdn.prismic.io/prismic.min.js")
+    
     link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Lato:300,400,700", rel="stylesheet", type="text/css")
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
     style 
