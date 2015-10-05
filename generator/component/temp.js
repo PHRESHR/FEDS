@@ -1,4 +1,5 @@
 import template from './<%= name %>.html!text';
+import './<%= name %>.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
@@ -22,9 +23,13 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 
 // <%= upCaseName %> Controller
 class <%= upCaseName %> {
-  constructor() {
-    this.name = '<%= name %>';
-    this.activated = false;
+  constructor($log) {
+    Object.assign(this, {
+      $log,
+      apiHost: '/api',
+      name: '<%= name %>',
+      activated: false
+    });
     // On load
     this.activate();
   }
