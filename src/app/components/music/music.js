@@ -1,19 +1,19 @@
-import template from './<%= name %>.html!text';
-import './<%= name %>.css!';
+import template from './music.html!text';
+import './music.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
-@RouteConfig('<%= name %>', {
-  url: '/<%= name %>',
-  template: '<<%= name %>></<%= name %>>',
+@RouteConfig('music', {
+  url: '/music',
+  template: '<music></music>',
   resolve: {
     // Constant Meta
-    $title: () => '<%= upCaseName %>',
-    $description: () => '<%= upCaseName %> description'
+    $title: () => 'Music',
+    $description: () => 'Music description'
   }
 })
 @Component({
-  selector: '<%= name %>'
+  selector: 'music'
 })
 @View({
   template: template
@@ -21,13 +21,13 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 @Inject('$log')
 // end-non-standard
 
-// <%= upCaseName %> Controller
-class <%= upCaseName %> {
+// Music Controller
+class Music {
   constructor($log) {
     Object.assign(this, {
       $log,
       apiHost: '/api',
-      name: '<%= name %>',
+      name: 'music',
       activated: false
     });
     // On load
@@ -43,4 +43,4 @@ class <%= upCaseName %> {
   }
 }
 
-export default <%= upCaseName %>;
+export default Music;

@@ -29,9 +29,11 @@ sidenav {
   .nav {
 
     .nav-item {
+      color: var(--brandWhite);
       font-weight: normal;
       text-align: left;
       text-transform: uppercase;
+      text-decoration: none;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
@@ -42,9 +44,11 @@ sidenav {
       transition-duration: .5s;
       transition-timing-function: linear;
 
+      &.active,
       &:hover {
         background-color: var(--brandBlack);
       }
+
     }
   }
 }

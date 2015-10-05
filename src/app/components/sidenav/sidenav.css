@@ -234,9 +234,11 @@ sidenav .logo {
 }
 
 sidenav .nav .nav-item {
+  color: #ecf0f1;
   font-weight: normal;
   text-align: left;
   text-transform: uppercase;
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -247,7 +249,7 @@ sidenav .nav .nav-item {
   transition-timing-function: linear;
 }
 
-sidenav .nav .nav-item:hover {
+sidenav .nav .nav-item.active, sidenav .nav .nav-item:hover {
   background-color: #111111;
 }
 

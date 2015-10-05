@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/videoview/_videoview.css"],"names":[],"mappings":"AAAA;CACC,WAAW;CACX","file":"components/videoview/videoview.css","sourcesContent":["videoview {\n\tcolor: red;\n}\n"],"sourceRoot":"/source/"}

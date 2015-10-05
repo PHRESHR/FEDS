@@ -25,7 +25,8 @@ class Sidenav {
         { state: 'radio-tv-film', label: 'Radio-TV-Film' },
         { state: 'music', label: 'Music' },
         { state: 'comedy', label: 'Comedy' },
-        { state: 'lifestyle', label: 'Lifestyle' }
+        { state: 'lifestyle', label: 'Lifestyle' },
+        { state: 'episodes', label: 'Episodes' }
       ],
       activated: false
     });

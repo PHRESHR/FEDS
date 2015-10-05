@@ -1,19 +1,19 @@
-import template from './<%= name %>.html!text';
-import './<%= name %>.css!';
+import template from './radio-tv-film.html!text';
+import './radio-tv-film.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
-@RouteConfig('<%= name %>', {
-  url: '/<%= name %>',
-  template: '<<%= name %>></<%= name %>>',
+@RouteConfig('radio-tv-film', {
+  url: '/radio-tv-film',
+  template: '<radio-tv-film></radio-tv-film>',
   resolve: {
     // Constant Meta
-    $title: () => '<%= upCaseName %>',
-    $description: () => '<%= upCaseName %> description'
+    $title: () => 'Radio-tv-film',
+    $description: () => 'Radio-tv-film description'
   }
 })
 @Component({
-  selector: '<%= name %>'
+  selector: 'radio-tv-film'
 })
 @View({
   template: template
@@ -21,13 +21,13 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 @Inject('$log')
 // end-non-standard
 
-// <%= upCaseName %> Controller
-class <%= upCaseName %> {
+// RadioTvFilm Controller
+class RadioTvFilm {
   constructor($log) {
     Object.assign(this, {
       $log,
       apiHost: '/api',
-      name: '<%= name %>',
+      name: 'radio-tv-film',
       activated: false
     });
     // On load
@@ -43,4 +43,4 @@ class <%= upCaseName %> {
   }
 }
 
-export default <%= upCaseName %>;
+export default RadioTvFilm;

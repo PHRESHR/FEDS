@@ -1,19 +1,19 @@
-import template from './<%= name %>.html!text';
-import './<%= name %>.css!';
+import template from './docu-series.html!text';
+import './docu-series.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
-@RouteConfig('<%= name %>', {
-  url: '/<%= name %>',
-  template: '<<%= name %>></<%= name %>>',
+@RouteConfig('docu-series', {
+  url: '/docu-series',
+  template: '<docu-series></docu-series>',
   resolve: {
     // Constant Meta
-    $title: () => '<%= upCaseName %>',
-    $description: () => '<%= upCaseName %> description'
+    $title: () => 'Docu-series',
+    $description: () => 'Docu-series description'
   }
 })
 @Component({
-  selector: '<%= name %>'
+  selector: 'docu-series'
 })
 @View({
   template: template
@@ -21,13 +21,13 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 @Inject('$log')
 // end-non-standard
 
-// <%= upCaseName %> Controller
-class <%= upCaseName %> {
+// DocuSeries Controller
+class DocuSeries {
   constructor($log) {
     Object.assign(this, {
       $log,
       apiHost: '/api',
-      name: '<%= name %>',
+      name: 'docu-series',
       activated: false
     });
     // On load
@@ -43,4 +43,4 @@ class <%= upCaseName %> {
   }
 }
 
-export default <%= upCaseName %>;
+export default DocuSeries;

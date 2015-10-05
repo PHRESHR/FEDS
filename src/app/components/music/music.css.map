@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/music/_music.css"],"names":[],"mappings":"AAAA;CACC,eAAe;CACf","file":"components/music/music.css","sourcesContent":["music {\n\tcolor: inherit;\n}\n"],"sourceRoot":"/source/"}

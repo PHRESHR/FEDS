@@ -1,19 +1,19 @@
-import template from './<%= name %>.html!text';
-import './<%= name %>.css!';
+import template from './episodes.html!text';
+import './episodes.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
-@RouteConfig('<%= name %>', {
-  url: '/<%= name %>',
-  template: '<<%= name %>></<%= name %>>',
+@RouteConfig('episodes', {
+  url: '/episodes',
+  template: '<episodes></episodes>',
   resolve: {
     // Constant Meta
-    $title: () => '<%= upCaseName %>',
-    $description: () => '<%= upCaseName %> description'
+    $title: () => 'Episodes',
+    $description: () => 'Episodes description'
   }
 })
 @Component({
-  selector: '<%= name %>'
+  selector: 'episodes'
 })
 @View({
   template: template
@@ -21,13 +21,13 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 @Inject('$log')
 // end-non-standard
 
-// <%= upCaseName %> Controller
-class <%= upCaseName %> {
+// Episodes Controller
+class Episodes {
   constructor($log) {
     Object.assign(this, {
       $log,
       apiHost: '/api',
-      name: '<%= name %>',
+      name: 'episodes',
       activated: false
     });
     // On load
@@ -43,4 +43,4 @@ class <%= upCaseName %> {
   }
 }
 
-export default <%= upCaseName %>;
+export default Episodes;
