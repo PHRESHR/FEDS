@@ -1,7 +1,7 @@
 @import '../../styles/styles.css';
 
 sidenav {
-  /*height: 100vh;*/
+  width: 150px;
 
   .md-sidenav-left {
     width: 150px;

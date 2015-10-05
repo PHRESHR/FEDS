@@ -4,18 +4,11 @@
       <img src="/images/logos/logo-red.svg" alt="Logo">
     </a>
   </header>
-  <md-content flex class="md-hue-2">
+  <md-content flex class="md-hue-1">
     <nav class="nav" role="navigation">
       <a class="nav-item" ng-repeat="item in vm.navigation" ui-sref="{{::item.state}}" ui-sref-active="active">
         {{ item.label }}
       </a>
     </nav>
-    <!-- <ul class="menu">
-      <li ng-repeat="item in vm.navigation" ui-sref-active="active">
-        <a ui-sref="{{::item.state}}">
-          {{ item.label }}
-        </a>
-      </li>
-    </ul> -->
   </md-content>
 </md-sidenav>
