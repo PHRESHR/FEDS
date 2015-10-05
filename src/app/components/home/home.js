@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import template from './home.html!text';
+import './home.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard

@@ -1,4 +1,5 @@
 import template from './videolist.html!text';
+import './videolist.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 // start-non-standard
@@ -38,6 +39,7 @@ class Videolist {
    * Handles on load processing, and loading initial data
  */
   activate() {
+
     // fetch data using promise
     this.VideosService.getAllVideos()
       .then((videos) => {

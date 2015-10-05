@@ -1,5 +1,17 @@
 @import '../../styles/styles.css';
 
 videolist {
+  #latest {
+    background-color: #212121;
+    padding: 8px;
+  }
+  .item {
+    margin: 8px;
+    h1 {
+      font-size: calc(24/16)rem;
+    }
+    .poster {
 
+    }
+  }
 }

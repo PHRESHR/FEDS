@@ -26,6 +26,7 @@ class VideosService {
         this.$log.log(err);
       });
   }
+
   // getAllVideos() {
   //   return this.$http.get(`${this.apiHost}/video`);
   // }
