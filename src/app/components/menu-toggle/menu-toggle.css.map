@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/menu-toggle/_menu-toggle.css"],"names":[],"mappings":"AAAA;CACC,WAAW;CACX","file":"components/menu-toggle/menu-toggle.css","sourcesContent":[".menu-toggle {\n\tcolor: red;\n}"],"sourceRoot":"/source/"}

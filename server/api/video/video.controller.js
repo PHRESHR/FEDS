@@ -16,6 +16,18 @@ export const index = prismic.route((req, res, ctx) => {
   });
 });
 
+// Get Page
+export const page = prismic.route((req, res, ctx) => {
+  ctx.api.form('everything')
+  .set('page', req.params['pagenum'] || '1')
+  .ref(ctx.ref)
+  .query(Prismic.Predicates.at('document.type', 'video'))
+  .submit((err, videos) => {
+    if (err) { prismic.onPrismicError(err, req, res); return; }
+    res.status(200).json(videos);
+  });
+});
+
 // Get channel: Docu-Series
 export const docuseries = prismic.route((req, res, ctx) => {
   ctx.api.form('everything')
@@ -23,7 +35,7 @@ export const docuseries = prismic.route((req, res, ctx) => {
   .ref(ctx.ref)
   .query(
     Prismic.Predicates.at('document.type', 'video'),
-    Prismic.Predicates.any("document.tags", ['docu-series'])
+    Prismic.Predicates.any('document.tags', ['Docu-Series'])
   )
   .pageSize(21)
   .submit((err, videos) => {

@@ -1,0 +1,16 @@
+<section id="latest">
+	<div class="items" layout="row" layout-align="space-between" layout-wrap>
+
+		<md-card class="item" flex="25" ng-repeat="video in ::vm.results track by video.id" ng-if="$index < 4">
+
+			<!-- <div class="poster" ng-style="{ 'background-image': 'url(' + video.fragments['video.poster'].value.views.column.url +')' }"></div> -->
+			<!-- <img ng-src="{{video.fragments['video.poster'].value.views.column.url}}"  class="img{{$index}} md-card-image"> -->
+			<md-card-content class="card-info">
+				<h5>{{::video.fragments['video.channel'].value}}</h5>
+			  <h1>{{::video.fragments['video.title'].value[0].text}}</h1>
+				<span>{{::video.fragments['video.shortlede'].value[0].text}}</span>
+			</md-card-content>
+		</md-card>
+
+	</div>
+</section>

@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/menu-link/_menu-link.css"],"names":[],"mappings":"AAAA;CACC,WAAW;CACX","file":"components/menu-link/menu-link.css","sourcesContent":[".menu-link {\n\tcolor: red;\n}\n"],"sourceRoot":"/source/"}

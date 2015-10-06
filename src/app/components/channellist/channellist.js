@@ -1,5 +1,5 @@
-import template from './videolist.html!text';
-import './videolist.css!';
+import template from './channellist.html!text';
+import './channellist.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
 const INIT = new WeakMap();
@@ -8,7 +8,7 @@ const LOG = new WeakMap();
 
 // start-non-standard
 @Component({
-  selector: 'videolist'
+  selector: 'channellist'
 })
 @View({
   template: template
@@ -16,20 +16,20 @@ const LOG = new WeakMap();
 @Inject('VideosService', '$log')
 // end-non-standard
 
-// Videolist Controller
-class Videolist {
+// Channellist Controller
+class Channellist {
   constructor(VideosService, $log) {
     SERVICE.set(this, VideosService);
     LOG.set(this, $log);
     INIT.set(this, () => {
-      SERVICE.get(this).getAllVideos().then(videos => {
+      SERVICE.get(this).getDocuSeries().then(videos => {
         this.videos = videos;
         this.results = videos.results;
         LOG.get(this).log(this.results);
       });
     });
     Object.assign(this, {
-      name: 'videolist',
+      name: 'Channel listing',
       activated: false
     });
     // On load
@@ -41,12 +41,9 @@ class Videolist {
  */
   activate() {
 
-    // fetch data
-
     INIT.get(this)();
-
     this.activated = true;
   }
 }
 
-export default Videolist;
+export default Channellist;

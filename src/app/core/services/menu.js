@@ -8,36 +8,45 @@ import {Service, Inject} from '../decorators/decorators';
 // end-non-standard
 class MenuService {
   constructor($rootScope, $location, $log) {
-    this.$rootScope = $rootScope;
-    this.$location = $location;
-    this.$log = $log;
-    this.name = 'Menu Service';
+    Object.assign(this, {
+      $rootScope,
+      $location,
+      $log,
+      name: 'Menu Service'
+    });
     this.sections = [{
-      name: 'Getting Started',
-      state: 'home.gettingstarted',
-      type: 'link'
-    }];
-    this.sections.push({
-      name: 'Beers',
+      name: 'Docu-Series',
       type: 'toggle',
       pages: [{
-        name: 'IPAs',
+        name: 'All',
         type: 'link',
-        state: 'home.beers.ipas',
-        icon: 'fa fa-group'
+        state: 'docu-series'
       },
       {
-        name: 'Porters',
-        state: 'home.beers.porters',
+        name: 'Boxing Chicks',
         type: 'link',
-        icon: 'fa fa-map-marker'
-      },
-      {
-        name: 'Wheat',
-        state: 'home.beers.wheat',
-        type: 'link',
-        icon: 'fa fa-plus'
+        state: 'episodes.boxing-chicks'
       }]
+    }];
+    this.sections.push({
+      name: 'Radio-Tv-Film',
+      state: 'radio-tv-film',
+      type: 'link'
+    });
+    this.sections.push({
+      name: 'Music',
+      state: 'music',
+      type: 'link'
+    });
+    this.sections.push({
+      name: 'Comedy',
+      state: 'comedy',
+      type: 'link'
+    });
+    this.sections.push({
+      name: 'Lifestyle',
+      state: 'lifestyle',
+      type: 'link'
     });
   }
   toggleSelectSection(section) {

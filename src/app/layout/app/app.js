@@ -1,6 +1,7 @@
 import '../../components/sidenav/sidenav';
 import '../../components/toolbar/toolbar';
 import '../../components/videolist/videolist';
+import '../../components/channellist/channellist';
 import '../../components/videoview/videoview';
 import '../../components/episodes/episodes';
 import '../../components/home/home';
