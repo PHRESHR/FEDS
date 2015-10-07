@@ -22,7 +22,7 @@ class Channellist {
     SERVICE.set(this, VideosService);
     LOG.set(this, $log);
     INIT.set(this, () => {
-      SERVICE.get(this).getDocuSeries().then(videos => {
+      SERVICE.get(this).getChannel('docu-series').then(videos => {
         this.videos = videos;
         this.results = videos.results;
         LOG.get(this).log(this.results);
@@ -32,6 +32,7 @@ class Channellist {
       name: 'Channel listing',
       activated: false
     });
+    LOG.get(this).log(SERVICE.get(this));
     // On load
     this.activate();
   }

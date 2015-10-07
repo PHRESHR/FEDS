@@ -20,23 +20,13 @@ class VideosService {
   }
 
   getAllVideos() {
-    // return this.$http.get(`${this.apiHost}/video`)
-    //   .then((results) => {
-    //     // Just return the http body
-    //     return results.data;
-    //   })
-    //   .catch((err) => {
-    //     this.$log.log(err);
-    //   });
-
     return HTTP.get(this).get(`${this.apiHost}/video`)
       .then(results => results.data )
       .catch(err => LOG.get(this).log(err));
   }
 
-  getDocuSeries() {
-    // channel = channel || 'docu-series';
-    return HTTP.get(this).get(`${this.apiHost}/video/docu-series`)
+  getChannel(channel) {
+    return HTTP.get(this).get(`${this.apiHost}/video/${channel}`)
       .then(results => results.data )
       .catch(err => LOG.get(this).log(err));
   }

@@ -1,18 +1,14 @@
-<md-button
-	class="md-button-toggle"
-	ng-click="toggle()"
-	aria-controls="docs-menu-{{section.name | nospace}}"
-	flex layout="row"
-	aria-expanded="{{isOpen()}}">
+<a
+	class="nav-item"
+	ng-class="{'': !toggled, 'opened active': toggled}"
+	ng-click="toggled=!toggled"
+	flex layout="row">
 	{{section.name}}
-	<span
-		aria-hidden="true"
-		class=" pull-right fa fa-chevron-down md-toggle-icon"
-		ng-class="{'toggled' : isOpen()}">
-	</span>
-</md-button>
-<ul ng-show="isOpen()" id="docs-menu-{{section.name | nospace}}" class="menu-toggle-list">
-	<li ng-repeat="page in section.pages">
+	<md-icon ng-if="!toggled" aria-label="Menu" class="material-icons">expand_more</md-icon>
+	<md-icon ng-if="toggled" aria-label="Close" class="material-icons">expand_less</md-icon>
+</a>
+<section class="subnav animate-if" ng-if="toggled">
+	<nav ng-repeat="page in section.pages">
     <menu-link section="page"></menu-link>
-	</li>
-</ul>
+	</nav>
+</section>

@@ -2,6 +2,10 @@ import template from './sidenav.html!text';
 import './sidenav.css!';
 import {Component, View, Inject} from '../../core/decorators/decorators';
 
+const INIT = new WeakMap();
+const SERVICE = new WeakMap();
+const LOG = new WeakMap();
+
 // start-non-standard
 @Component({
   selector: 'sidenav'
@@ -9,38 +13,40 @@ import {Component, View, Inject} from '../../core/decorators/decorators';
 @View({
   template: template
 })
-@Inject('$mdSidenav', '$log')
+@Inject('$mdSidenav', 'MenuService', '$log')
 // end-non-standard
 
 // Sidenav Controller
 class Sidenav {
-  constructor($mdSidenav, $log) {
+  constructor($mdSidenav, MenuService, $log) {
+    SERVICE.set(this, MenuService);
+    LOG.set(this, $log);
+    INIT.set(this, () => {
+      LOG.get(this).log(SERVICE.get(this));
+    });
     Object.assign(this, {
       $mdSidenav,
-      $log,
       name: 'sidenav',
+      menu: SERVICE.get(this),
       openLeftMenu: () => $mdSidenav('left').toggle(),
       navigation: [
         { state: 'docu-series', label: 'Docu-Series' },
         { state: 'radio-tv-film', label: 'Radio-TV-Film' },
         { state: 'music', label: 'Music' },
         { state: 'comedy', label: 'Comedy' },
-        { state: 'lifestyle', label: 'Lifestyle' },
-        { state: 'episodes', label: 'Episodes' }
+        { state: 'lifestyle', label: 'Lifestyle' }
       ],
-      activated: false
+      isOpen: (section) => {
+        return SERVICE.get(this).isSectionSelected(section);
+      },
+      toggleOpen: (section) => {
+        SERVICE.get(this).toggleSelectSection(section);
+      }
     });
-    // On load
-    this.activate();
+
+    INIT.get(this)();
   }
 
-  /**
-   * Handles on load processing, and loading initial data
- */
-  activate() {
-
-    this.activated = true;
-  }
 }
 
 export default Sidenav;

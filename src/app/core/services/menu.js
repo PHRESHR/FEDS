@@ -1,5 +1,8 @@
 import {Service, Inject} from '../decorators/decorators';
 
+const LOCATION = new WeakMap();
+const LOG = new WeakMap();
+
 // start-non-standard
 @Service({
   serviceName: 'MenuService'
@@ -7,45 +10,49 @@ import {Service, Inject} from '../decorators/decorators';
 @Inject('$rootScope', '$location', '$log')
 // end-non-standard
 class MenuService {
-  constructor($rootScope, $location, $log) {
+  constructor($location, $log) {
+    LOCATION.set(this, $location);
+    LOG.set(this, $log);
     Object.assign(this, {
-      $rootScope,
-      $location,
-      $log,
-      name: 'Menu Service'
+      name: 'Menu Service',
+      openedSection: '',
+      sections: [
+        {
+          name: 'Channels',
+          type: 'toggle',
+          pages: [
+            {
+              name: 'Docu-Series',
+              type: 'link',
+              state: 'docu-series'
+            },
+            {
+              name: 'Radio-TV-Film',
+              type: 'link',
+              state: 'radio-tv-film'
+            },
+            {
+              name: 'Music',
+              type: 'link',
+              state: 'music'
+            },
+            {
+              name: 'Comedy',
+              type: 'link',
+              state: 'comedy'
+            },
+            {
+              name: 'Lifestyle',
+              type: 'link',
+              state: 'lifestyle'
+            }
+          ]
+        }
+      ]
     });
-    this.sections = [{
-      name: 'Docu-Series',
-      type: 'toggle',
-      pages: [{
-        name: 'All',
-        type: 'link',
-        state: 'docu-series'
-      },
-      {
-        name: 'Boxing Chicks',
-        type: 'link',
-        state: 'episodes.boxing-chicks'
-      }]
-    }];
     this.sections.push({
-      name: 'Radio-Tv-Film',
-      state: 'radio-tv-film',
-      type: 'link'
-    });
-    this.sections.push({
-      name: 'Music',
-      state: 'music',
-      type: 'link'
-    });
-    this.sections.push({
-      name: 'Comedy',
-      state: 'comedy',
-      type: 'link'
-    });
-    this.sections.push({
-      name: 'Lifestyle',
-      state: 'lifestyle',
+      name: 'Episodes',
+      state: 'episodes',
       type: 'link'
     });
   }
@@ -57,7 +64,7 @@ class MenuService {
     return this.openedSection === section;
   }
   selectPage(section, page) {
-    page && page.url && this.$location.path(page.url);
+    page && page.url && LOCATION.get(this).path(page.url);
     this.currentSection = section;
     this.currentPage = page;
   }

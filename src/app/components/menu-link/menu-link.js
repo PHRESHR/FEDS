@@ -1,5 +1,8 @@
 import template from './menu-link.html!text';
+import './menu-link.css!';
 import {Directive, Inject} from '../../core/decorators/decorators';
+
+const LOG = new WeakMap();
 
 // start-non-standard
 @Directive({
@@ -11,24 +14,15 @@ import {Directive, Inject} from '../../core/decorators/decorators';
 // Menu-toggle Controller
 class MenuLink {
   constructor($log) {
-    Object.assign(this, {
-      $log,
-      restrict: 'E',
-      scope: {
-        section: '='
-      },
-      name: 'Menu Toggle'
-    });
+    this.restrict = 'E';
+    this.scope = {
+      section: '='
+    };
+    this.template = template;
+    LOG.set(this, $log);
   }
   template: template;
-  link(scope, element) {
-    const controller = element.parent().controller();
-    scope.focusSection = () => {
-      // set flag to be used later when
-      // $locationChangeSuccess calls openPage()
-      controller.autoFocusContent = true;
-    };
-  }
+  link(scope, element) {}
   // start-non-standard
   // @Inject('')
   // end-non-standard

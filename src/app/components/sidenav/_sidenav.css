@@ -27,13 +27,14 @@ sidenav {
     border-bottom: none;
   }
   .nav {
-
+    a {
+      text-decoration: none;
+    }
     .nav-item {
       color: var(--brandWhite);
       font-weight: normal;
       text-align: left;
       text-transform: uppercase;
-      text-decoration: none;
       display: flex;
       flex-direction: row;
       align-items: flex-start;

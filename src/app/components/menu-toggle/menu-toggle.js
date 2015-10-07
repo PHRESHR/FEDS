@@ -1,5 +1,9 @@
 import template from './menu-toggle.html!text';
+import './menu-toggle.css!';
 import {Directive, Inject} from '../../core/decorators/decorators';
+
+const TIMEOUT = new WeakMap();
+const LOG = new WeakMap();
 
 // start-non-standard
 @Directive({
@@ -11,34 +15,22 @@ import {Directive, Inject} from '../../core/decorators/decorators';
 // Menu-toggle Controller
 class MenuToggle {
   constructor($timeout, $log) {
-    Object.assign(this, {
-      $timeout,
-      $log,
-      restrict: 'E',
-      scope: {
-        section: '='
-      },
-      name: 'Menu Toggle'
-    });
+    this.restrict = 'E';
+    this.scope = {
+      section: '='
+    };
+    this.template = template;
+    TIMEOUT.set(this, $timeout);
+    LOG.set(this, $log);
   }
-  template: template;
   link(scope, element) {
-    const controller = element.parent().controller();
     scope.isOpen = () => {
-      return controller.isOpen(scope.section);
     };
     scope.toggle = () => {
-      controller.toggleOpen(scope.section);
     };
-
-    const parentNode = element[0].parentNode.parentNode.parentNode;
-    if (parentNode.classList.contains('parent-list-item')) {
-      const heading = parentNode.querySelector('h2');
-      element[0].firstChild.setAttribute('aria-describedby', heading.id);
-    }
   }
   // start-non-standard
-  // @Inject('')
+  // @Inject('$log')
   // end-non-standard
   static directiveFactory() {
     MenuToggle.instance = new MenuToggle();

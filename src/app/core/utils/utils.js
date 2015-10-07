@@ -26,3 +26,7 @@ export function getMetaImgValue(metaImg) {
 export function getUrlValue(url) {
   return angular.isFunction(url) ? url() : url;
 }
+
+export function sortByHumanName(a, b) {
+  return (a.humanName < b.humanName) ? -1 : (a.humanName > b.humanName) ? 1 : 0;
+}

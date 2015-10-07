@@ -35,7 +35,8 @@ export const docuseries = prismic.route((req, res, ctx) => {
   .ref(ctx.ref)
   .query(
     Prismic.Predicates.at('document.type', 'video'),
-    Prismic.Predicates.any('document.tags', ['Docu-Series'])
+    // Prismic.Predicates.any('document.tags', ['Docu-Series'])
+    Prismic.Predicates.any('my.video.channel', ['docu-series'])
   )
   .pageSize(21)
   .submit((err, videos) => {
