@@ -1,5 +1,24 @@
 <main ng-if="vm.activated">
 	<h1>{{ vm.name }}</h1>
-	<videolist></videolist>
+	<section>
+		<div class="items" layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
+
+			<md-card class="item" flex="33" ng-repeat="video in ::vm.results track by video.id">
+
+				<div class="item-wrapper">
+					<div class="poster" ng-style="{ 'background-image': 'url(' + video.fragments['video.poster'].value.views.column.url +')' }"></div>
+					<!-- <img ng-src="{{video.fragments['video.poster'].value.views.column.url}}"  class="poster"> -->
+					<md-card-content class="card-info">
+						<h5 class="item-channel {{::video.fragments['video.channel'].value}}">{{::video.fragments['video.channel'].value}}</h5>
+					  <h1 class="item-title">{{::video.fragments['video.title'].value[0].text}}</h1>
+						<p class="item-intro">{{::video.fragments['video.shortlede'].value[0].text}}</p>
+					</md-card-content>
+				</div>
+
+			</md-card>
+
+		</div>
+	</section>
+	<!-- <videolist></videolist> -->
 </main>
 <div ng-if="!vm.activated">Loading Data...</div>

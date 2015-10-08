@@ -1,3 +1,68 @@
-.home {
-	color: inherit;
+@import '../../styles/styles.css';
+
+home {
+  #latest {
+    background-color: #212121;
+    padding: 8px;
+  }
+  .item {
+		position: relative;
+    padding: 0;
+    margin: 8px 0 0;
+    box-shadow: none;
+    @mixin aspect-ratio 16, 9;
+
+    .item-channel {
+      &.docu-series {
+        color: var(--channel-docu-series);
+      }
+      &.radio-tv-film {
+        color: var(--channel-radio-tv-film);
+      }
+      &.music {
+        color: var(--channel-music);
+      }
+      &.comedy {
+        color: var(--channel-comedy);
+      }
+      &.lifestyle {
+        color: var(--channel-lifestyle);
+      }
+    }
+    .item-title {
+      font-size: calc(20/16)rem;
+      text-transform: uppercase;
+    }
+    .item-intro {
+      font-size: calc(16/16)rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .poster {
+			height: 100%;
+			opacity: 1;
+	    /*background-size: cover;*/
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+
+      &:before {
+        content: '';
+        background-image: -webkit-linear-gradient(top left, #000, #444);
+        background-image: linear-gradient(to bottom right,#000,#444);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: .6;
+        /*margin: 4px;*/
+      }
+    }
+    .card-info {
+			position: absolute;
+			bottom: 20px;
+			left: 0;
+    }
+  }
 }

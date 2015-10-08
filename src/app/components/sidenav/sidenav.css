@@ -205,10 +205,6 @@ img, video, object {
   max-width: 100%;
 }
 
-sidenav {
-  width: 150px;
-}
-
 sidenav .md-sidenav-left {
   width: 150px;
   min-width: 150px;
@@ -255,5 +251,11 @@ sidenav .nav .nav-item {
 sidenav .nav .nav-item.active, sidenav .nav .nav-item:hover {
   background-color: #111111;
 }
+
+@media (min-width: 960px) {
+  sidenav {
+  width: 150px;
+  }
+  }
 
 /*# sourceMappingURL=sidenav.css.map */

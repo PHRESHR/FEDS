@@ -3,6 +3,10 @@ import template from './home.html!text';
 import './home.css!';
 import {RouteConfig, Component, View, Inject} from '../../core/decorators/decorators';
 
+const INIT = new WeakMap();
+const SERVICE = new WeakMap();
+const LOG = new WeakMap();
+
 // start-non-standard
 @RouteConfig('home', {
   url: '/',
@@ -19,16 +23,25 @@ import {RouteConfig, Component, View, Inject} from '../../core/decorators/decora
 @View({
   template: template
 })
-@Inject('TestService', '$log')
+@Inject('VideosService', '$log')
 // end-non-standard
 
 // Home Controller
 class Home {
-  constructor(TestService, $log) {
-    this.$log = $log;
-    this.TestService = TestService;
-    this.name = 'home';
-    this.activated = false;
+  constructor(VideosService, $log) {
+    Object.assign(this, {
+      name: 'home',
+      activated: false
+    });
+    SERVICE.set(this, VideosService);
+    LOG.set(this, $log);
+    INIT.set(this, () => {
+      SERVICE.get(this).getAllVideos().then(videos => {
+        this.videos = videos;
+        this.results = videos.results;
+        LOG.get(this).log(this.results);
+      });
+    });
 
     // On load
     this.activate();
@@ -38,7 +51,9 @@ class Home {
    * Handles on load processing, and loading initial data
  */
   activate() {
-    const test = this.TestService.getService();
+    // fetch data
+
+    INIT.get(this)();
     this.activated = true;
   }
 }

@@ -19,6 +19,10 @@ const LOG = new WeakMap();
 // Channellist Controller
 class Channellist {
   constructor(VideosService, $log) {
+    Object.assign(this, {
+      name: 'Channel listing',
+      activated: false
+    });
     SERVICE.set(this, VideosService);
     LOG.set(this, $log);
     INIT.set(this, () => {
@@ -27,10 +31,6 @@ class Channellist {
         this.results = videos.results;
         LOG.get(this).log(this.results);
       });
-    });
-    Object.assign(this, {
-      name: 'Channel listing',
-      activated: false
     });
     LOG.get(this).log(SERVICE.get(this));
     // On load
