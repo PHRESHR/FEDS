@@ -18,10 +18,10 @@
 		}
 	}
 	.animate-if.ng-enter {
-    transition: 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
+    transition: 500ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
 	}
 	.animate-if.ng-leave {
-		transition: 100ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
+		transition: 500ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
 	}
 	 .animate-if.ng-enter {
 	    max-height: 0;

@@ -44,6 +44,11 @@ summary {
   width: 100%;
 }
 
+/*main {
+  max-width: 1600px;
+  margin: 0 auto;
+}*/
+
 article {
   margin-bottom: var(--md-pad);
 }

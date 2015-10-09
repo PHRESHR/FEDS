@@ -234,6 +234,11 @@ main, header, footer, article, section, aside, details, summary {
     width: 100%;
 }
 
+/*main {
+  max-width: 1600px;
+  margin: 0 auto;
+}*/
+
 article {
 
     margin-bottom: 1rem;
@@ -324,12 +329,12 @@ img, video, object {
 
 .menu-toggle .animate-if.ng-enter {
 
-    transition: 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
+    transition: 500ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
 }
 
 .menu-toggle .animate-if.ng-leave {
 
-    transition: 100ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
+    transition: 500ms cubic-bezier(0.17, 0.04, 0.03, 0.94) all;
 }
 
 .menu-toggle .animate-if.ng-enter {

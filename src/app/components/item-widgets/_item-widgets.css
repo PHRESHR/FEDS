@@ -1,0 +1,19 @@
+@import '../../styles/styles.css';
+
+item-widgets {
+	position: absolute;
+	padding: var(--md-pad);
+	top: 0;
+	right: 0;
+
+	.widget-item {
+		font-size: calc(32/16)rem;
+		width: 32px;
+		height: 32px;
+		margin: 0;
+		a {
+			color: var(--brandWhite);
+			text-decoration: none;
+		}
+	}
+}

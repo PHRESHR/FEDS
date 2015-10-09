@@ -8,6 +8,7 @@ import 'rx-angular';
 
 //  ----------------App Files---------------  //
 import './core/core';
+import './common/common';
 import './layout/app/app';
 
 import appModule from './app.module';
