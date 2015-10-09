@@ -180,14 +180,20 @@ gulp.task('component', () => {
   const cap = (val) => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
+  const camel = (val) => {
+    return val.replace( /-([a-z])/ig, ( all, letter ) => letter.toUpperCase());
+  }
   const name = yargs.argv.name;
+  const upCaseName = cap(name);
+  const camelCaseName = camel(upCaseName)
   const parentPath = yargs.argv.parent || '';
   const destPath = path.join(resolveToComponents(), parentPath, name);
 
   return gulp.src(paths.blankTemplates)
   .pipe($.template({
-    name: name,
-    upCaseName: cap(name)
+    name,
+    upCaseName,
+    camelCaseName
   }))
   .pipe($.rename((path) => {
     path.basename = path.basename.replace('temp', name);

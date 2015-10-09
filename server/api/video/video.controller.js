@@ -28,6 +28,18 @@ export const page = prismic.route((req, res, ctx) => {
   });
 });
 
+// Get featured
+export const featured = prismic.route((req, res, ctx) => {
+  ctx.api.form('everything')
+  .set('pageSize', '1')
+  .ref(ctx.ref)
+  .query(Prismic.Predicates.at('document.type', 'featured'))
+  .submit((err, videos) => {
+    if (err) { prismic.onPrismicError(err, req, res); return; }
+    res.status(200).json(videos);
+  });
+});
+
 // Get channel: Docu-Series
 export const docuseries = prismic.route((req, res, ctx) => {
   ctx.api.form('everything')

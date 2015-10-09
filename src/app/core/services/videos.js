@@ -25,6 +25,12 @@ class VideosService {
       .catch(err => LOG.get(this).log(err));
   }
 
+  getFeatured() {
+    return HTTP.get(this).get(`${this.apiHost}/video/featured`)
+      .then(results => results.data )
+      .catch(err => LOG.get(this).log(err));
+  }
+
   getChannel(channel) {
     return HTTP.get(this).get(`${this.apiHost}/video/${channel}`)
       .then(results => results.data )

@@ -1,0 +1,22 @@
+@import '../../styles/styles.css';
+
+featured-video {
+	display: block;
+	color: inherit;
+	.featured-video {
+		@mixin aspect-ratio 16, 9;
+
+		&:before {
+			@media (--large) {
+		    padding-top: 0;
+			}
+		}
+		.videogular-container {
+			@media (--large) {
+				position: relative;
+				height: calc(100vh - 125px);
+				padding: 0;
+			}
+		}
+	}
+}

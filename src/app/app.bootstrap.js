@@ -4,6 +4,15 @@ import 'angular-animate';
 import 'angular-sanitize';
 import 'angular-material';
 import 'angular-ui-router';
+import 'angulartics';
+import 'angulartics-google-analytics';
+import 'videogular';
+import 'videogular-buffering';
+import 'videogular-controls';
+import 'videogular-overlay-play';
+import 'videogular-poster';
+import 'videogular-analytics';
+import 'videogular-youtube';
 import 'rx-angular';
 
 //  ----------------App Files---------------  //

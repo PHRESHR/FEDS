@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', controller.index);
 
+router.get('/featured', controller.featured);
 router.get('/docu-series', controller.docuseries);
 // router.get('/radio-tv-film/page/:pagenum', controller.radiotvfilm);
 // router.get('/music/page/:pagenum', controller.music);

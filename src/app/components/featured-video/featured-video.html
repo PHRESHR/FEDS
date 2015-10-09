@@ -1,0 +1,30 @@
+<div>
+	<h1 class="featured-label">{{ vm.label }}</h1>
+</div>
+<section class="featured-video">
+  <div class="videogular-container">
+    <videogular vg-player-ready="vm.onPlayerReady($API)" vg-auto-play="true">
+      <vg-media vg-src="vm.config.sources" vg-youtube="rel=0;showinfo=0;autoplay=1;mute=1"></vg-media>
+
+      <vg-controls vg-autohide="vm.config.autoHide" vg-autohide-time="vm.config.autoHideTime">
+        <vg-play-pause-button></vg-play-pause-button>
+        <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        </vg-scrub-bar>
+        <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+        <vg-volume>
+          <vg-mute-button></vg-mute-button>
+          <vg-volume-bar></vg-volume-bar>
+        </vg-volume>
+        <vg-fullscreen-button></vg-fullscreen-button>
+      </vg-controls>
+
+      <vg-overlay-play></vg-overlay-play>
+      <vg-poster vg-url='vm.config.plugins.poster'></vg-poster>
+      <div class="logo-layer" ng-show="vm.API.currentState != 'play'">
+        <img src="/assets/images/logos/logo-red.svg">
+      </div>
+    </videogular>
+  </div>
+</section>

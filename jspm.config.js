@@ -20,6 +20,8 @@ System.config({
     "angular-mocks": "npm:angular-mocks@1.5.0-beta.0",
     "angular-sanitize": "github:angular/bower-angular-sanitize@1.5.0-beta.0",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
+    "angulartics": "github:angulartics/angulartics@0.20.1",
+    "angulartics-google-analytics": "github:angulartics/angulartics-google-analytics@0.1.1",
     "babel": "npm:babel-core@5.8.24",
     "babel-runtime": "npm:babel-runtime@5.8.24",
     "clean-css": "npm:clean-css@3.4.3",
@@ -32,6 +34,14 @@ System.config({
     "rx": "npm:rx@4.0.0",
     "rx-angular": "npm:rx-angular@0.0.14",
     "text": "github:systemjs/plugin-text@0.0.2",
+    "videogular": "github:2fdevs/bower-videogular@1.2.8",
+    "videogular-analytics": "github:2fdevs/bower-videogular-analytics@1.2.8",
+    "videogular-buffering": "github:2fdevs/bower-videogular-buffering@1.2.8",
+    "videogular-controls": "github:2fdevs/bower-videogular-controls@1.2.8",
+    "videogular-overlay-play": "github:2fdevs/bower-videogular-overlay-play@1.2.8",
+    "videogular-poster": "github:2fdevs/bower-videogular-poster@1.2.8",
+    "videogular-themes-default": "github:2fdevs/bower-videogular-themes-default@1.2.8",
+    "videogular-youtube": "github:NamPNQ/bower-videogular-youtube@2.0.4",
     "github:angular-ui/ui-router@0.2.15": {
       "angular": "github:angular/bower-angular@1.5.0-beta.0"
     },
