@@ -1,0 +1,116 @@
+.item {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  @mixin aspect-ratio 16, 9;
+
+  &.ng-enter {
+    opacity: 0;
+    transition: all linear 500ms;
+  }
+  &.ng-enter-stagger {
+    transition-delay: 0.1s;
+    transition-duration: 0s ;
+  }
+  &.ng-enter.ng-enter-active {
+    opacity: 1.0 ;
+  }
+
+  .item-wrapper {
+    margin: 8px 4px 0;
+
+    @media (--large) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  .item-channel {
+    font-size: calc(18/16)rem;
+    font-weight: 700;
+    &.docu-series {
+      color: var(--channel-docu-series);
+    }
+    &.radio-tv-film {
+      color: var(--channel-radio-tv-film);
+    }
+    &.music {
+      color: var(--channel-music);
+    }
+    &.comedy {
+      color: var(--channel-comedy);
+    }
+    &.lifestyle {
+      color: var(--channel-lifestyle);
+    }
+  }
+  .item-title {
+    font-size: calc(20/16)rem;
+    text-transform: uppercase;
+  }
+  .item-intro {
+    font-size: calc(14/16)rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+  }
+  .item-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: var(--md-pad);
+    z-index: 1;
+  }
+  .poster {
+    display: block;
+    height: 100%;
+    opacity: .9;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+
+    transition-property: text-decoration;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+
+    &:before {
+      content: '';
+      background-image: -webkit-linear-gradient(top left, #000, #444);
+      background-image: linear-gradient(to bottom right,#000,#444);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: .6;
+      /*margin: 4px;*/
+    }
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+  .card-info {
+    position: absolute;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    padding-top: 3rem;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      transition-property: text-decoration;
+      transition-duration: .5s;
+      transition-timing-function: linear;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

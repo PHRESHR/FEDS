@@ -10,7 +10,7 @@
 					<!-- <img ng-src="{{video.fragments['video.poster'].value.views.column.url}}"  class="poster"> -->
 					<md-card-content class="card-info">
 						<h5 class="item-channel {{::video.fragments['video.channel'].value}}">
-							<a href="">{{::video.fragments['video.channel'].value}}</a>
+							<a href="/{{::video.fragments['video.channel'].value}}">{{::video.fragments['video.channel'].value}}</a>
 						</h5>
 					  <h1 class="item-title">
 							<a href="">{{::video.fragments['video.title'].value[0].text}}</a>
@@ -29,4 +29,14 @@
 	</section>
 	<!-- <videolist></videolist> -->
 </main>
-<div ng-if="!vm.activated">Loading Data...</div>
+<div ng-if="!vm.activated">
+	<div class="loader">
+		<div class="spinner">
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+			<div class="rect5"></div>
+		</div>
+	</div>
+</div>

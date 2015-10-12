@@ -41,7 +41,7 @@ class VideosService {
   //   return this.$http.get(`${this.apiHost}/video`);
   // }
   getVideo(id) {
-    return this.$http.get('api/video/' + id);
+    return this.$http.get(`${this.apiHost}/video/${id}`);
   }
 }
 

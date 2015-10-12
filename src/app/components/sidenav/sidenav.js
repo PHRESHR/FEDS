@@ -22,20 +22,20 @@ class Sidenav {
     SERVICE.set(this, MenuService);
     LOG.set(this, $log);
     INIT.set(this, () => {
-      LOG.get(this).log(SERVICE.get(this));
+      // LOG.get(this).log(SERVICE.get(this));
     });
     Object.assign(this, {
       $mdSidenav,
       name: 'sidenav',
       menu: SERVICE.get(this),
       openLeftMenu: () => $mdSidenav('left').toggle(),
-      navigation: [
-        { state: 'docu-series', label: 'Docu-Series' },
-        { state: 'radio-tv-film', label: 'Radio-TV-Film' },
-        { state: 'music', label: 'Music' },
-        { state: 'comedy', label: 'Comedy' },
-        { state: 'lifestyle', label: 'Lifestyle' }
-      ],
+      // navigation: [
+      //   { state: 'docu-series', label: 'Docu-Series' },
+      //   { state: 'radio-tv-film', label: 'Radio-TV-Film' },
+      //   { state: 'music', label: 'Music' },
+      //   { state: 'comedy', label: 'Comedy' },
+      //   { state: 'lifestyle', label: 'Lifestyle' }
+      // ],
       isOpen: (section) => {
         return SERVICE.get(this).isSectionSelected(section);
       },

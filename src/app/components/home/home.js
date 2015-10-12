@@ -39,7 +39,6 @@ class Home {
       SERVICE.get(this).getAllVideos().then(videos => {
         this.videos = videos;
         this.results = videos.results;
-        LOG.get(this).log(this.results);
       });
     });
 

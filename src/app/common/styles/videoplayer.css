@@ -591,3 +591,19 @@ videogular vg-ima-ads,[videogular] vg-ima-ads {
   top: 0;
   display: none
 }
+
+videogular .logo-layer {
+  position: absolute;
+  display: block;
+  z-index: 50;
+  bottom: 70px;
+  right: 20px;
+}
+
+videogular .logo-layer img {
+  width: 75px;
+  height: auto;
+  padding-left: 20px;
+  padding-top: 20px;
+  opacity: 0.5;
+}

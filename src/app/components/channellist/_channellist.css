@@ -1,9 +1,36 @@
 @import '../../styles/styles.css';
+@import '../../common/styles/item-grid.css';
 
 channellist {
   #latest {
     background-color: #212121;
     padding: 8px;
+  }
+  #section-header {
+    h3 {
+      font-size: calc(32/16)rem;
+      font-weight: 400;
+    }
+    h1 {
+      font-weight: 300;
+      text-transform: uppercase;
+
+      &.docu-series {
+        color: var(--channel-docu-series);
+      }
+      &.radio-tv-film {
+        color: var(--channel-radio-tv-film);
+      }
+      &.music {
+        color: var(--channel-music);
+      }
+      &.comedy {
+        color: var(--channel-comedy);
+      }
+      &.lifestyle {
+        color: var(--channel-lifestyle);
+      }
+    }
   }
   .item {
     padding: var(--sm-pad);
@@ -16,7 +43,7 @@ channellist {
 
     }
     .card-info {
-      
+
     }
   }
 }

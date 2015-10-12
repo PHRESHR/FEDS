@@ -57,6 +57,70 @@ export const docuseries = prismic.route((req, res, ctx) => {
   });
 });
 
+// Get channel: Radio-TV-Film
+export const radiotvfilm = prismic.route((req, res, ctx) => {
+  ctx.api.form('everything')
+  .set('page', req.params['pagenum'] || '1')
+  .ref(ctx.ref)
+  .query(
+    Prismic.Predicates.at('document.type', 'video'),
+    Prismic.Predicates.any('my.video.channel', ['radio-tv-film'])
+  )
+  .pageSize(21)
+  .submit((err, videos) => {
+    if (err) { prismic.onPrismicError(err, req, res); return; }
+    res.status(200).json(videos);
+  });
+});
+
+// Get channel: Music
+export const music = prismic.route((req, res, ctx) => {
+  ctx.api.form('everything')
+  .set('page', req.params['pagenum'] || '1')
+  .ref(ctx.ref)
+  .query(
+    Prismic.Predicates.at('document.type', 'video'),
+    Prismic.Predicates.any('my.video.channel', ['music'])
+  )
+  .pageSize(21)
+  .submit((err, videos) => {
+    if (err) { prismic.onPrismicError(err, req, res); return; }
+    res.status(200).json(videos);
+  });
+});
+
+// Get channel: Comedy
+export const comedy = prismic.route((req, res, ctx) => {
+  ctx.api.form('everything')
+  .set('page', req.params['pagenum'] || '1')
+  .ref(ctx.ref)
+  .query(
+    Prismic.Predicates.at('document.type', 'video'),
+    Prismic.Predicates.any('my.video.channel', ['comedy'])
+  )
+  .pageSize(21)
+  .submit((err, videos) => {
+    if (err) { prismic.onPrismicError(err, req, res); return; }
+    res.status(200).json(videos);
+  });
+});
+
+// Get channel: Lifestyle
+export const lifestyle = prismic.route((req, res, ctx) => {
+  ctx.api.form('everything')
+  .set('page', req.params['pagenum'] || '1')
+  .ref(ctx.ref)
+  .query(
+    Prismic.Predicates.at('document.type', 'video'),
+    Prismic.Predicates.any('my.video.channel', ['lifestyle'])
+  )
+  .pageSize(21)
+  .submit((err, videos) => {
+    if (err) { prismic.onPrismicError(err, req, res); return; }
+    res.status(200).json(videos);
+  });
+});
+
 // Get single Video
 export const detail = prismic.route((req, res, ctx) => {
   const id = req.params['id'];

@@ -1,3 +1,4 @@
-<div>
-	<h1>{{ vm.name }}</h1>
-</div>
+<main ng-if="vm.activated">
+	<channellist></channellist>
+</main>
+<div ng-if="!vm.activated">Loading Data...</div>
