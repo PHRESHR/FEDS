@@ -11,6 +11,17 @@ featured-video {
 		    padding-top: 0;
 			}
 		}
+		#section-header {
+	    h3 {
+	      font-size: calc(32/16)rem;
+	      font-weight: 400;
+	    }
+	    h1 {
+				color: var(--brandRed);
+	      font-weight: 300;
+	      text-transform: uppercase;
+	    }
+	  }
 		.videogular-container {
 			@media (--large) {
 				position: relative;

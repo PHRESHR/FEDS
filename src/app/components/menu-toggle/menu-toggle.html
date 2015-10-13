@@ -8,7 +8,7 @@
 	<md-icon ng-if="toggled" aria-label="Close" class="material-icons">expand_less</md-icon>
 </a>
 <section class="subnav animate-if" ng-if="toggled">
-	<nav ng-repeat="page in section.pages">
+	<span ng-repeat="page in section.pages">
     <menu-link section="page"></menu-link>
-	</nav>
+	</span>
 </section>

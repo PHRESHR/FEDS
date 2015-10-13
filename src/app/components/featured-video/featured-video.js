@@ -21,7 +21,8 @@ const LOG = new WeakMap();
 class FeaturedVideo {
   constructor(VideosService, $log) {
     Object.assign(this, {
-      label: 'Featured Video',
+      label: 'featured',
+      title: 'Tomorrow Pictures TV Intro',
       activated: false
     });
     SERVICE.set(this, VideosService);
@@ -42,8 +43,10 @@ class FeaturedVideo {
         this.volume = 1;
         this.isCompleted = false;
         this.API = null;
-        this.onPlayerReady = (API) => this.API = API;
-
+        this.onPlayerReady = (API) => {
+          this.API = API;
+          console.log(this.API.currentState);
+        };
         this.onCompleteVideo = () => this.isCompleted = true;
 
         this.onUpdateState = (state) => this.state = state;

@@ -235,6 +235,17 @@ featured-video .featured-video > div {
 
 featured-video .featured-video:before {}
 
+featured-video .featured-video #section-header h3 {
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+featured-video .featured-video #section-header h1 {
+	color: #c0392b;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
 featured-video .featured-video .videogular-container {}
 
 @media (min-width: 1200px) {
