@@ -5,6 +5,7 @@ import './config/run';
 
 // import './resources/resources';
 import './filters/truncate';
+import './filters/html';
 
 import './services/test';
 import './services/menu';

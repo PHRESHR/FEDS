@@ -25,7 +25,7 @@ featured-video {
 		.videogular-container {
 			@media (--large) {
 				position: relative;
-				height: calc(100vh - 125px);
+				height: calc(100vh - 160px);
 				padding: 0;
 			}
 		}

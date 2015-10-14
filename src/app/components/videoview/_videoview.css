@@ -1,3 +1,55 @@
-videoview {
-	color: red;
+@import '../../styles/styles.css';
+
+video-view {
+	main {
+    max-width: 1400px;
+	}
+	header {
+		background-color: var(--brandDarkGrey);
+    padding: 20px;
+		margin-top: 8px;
+		.title {
+			font-weight: 300;
+			text-transform: uppercase;
+		}
+		.intro {
+			color: var(--brandRed);
+			font-size: calc(20/16)rem;
+			font-weight: 400;
+		}
+	}
+	/*.title, .intro, .content {
+		width: 67%;
+		margin: 0;
+	}*/
+	.content-label {
+		font-weight: 300;
+		text-transform: uppercase;
+	}
+	.content {
+		background-color: #1a1a1a;
+    margin: 8px 0 0;
+    padding: 50px;
+		p {
+			font-size: calc(20/16)rem;
+			margin: 0;
+		}
+	}
+	.main-video {
+		@mixin aspect-ratio 16, 9;
+
+		&:before {
+			@media (--large) {
+				padding-top: 0;
+			}
+		}
+		.videogular-container {
+			@media (--large) {
+				position: relative;
+				height: calc(100vh - 300px);
+				min-height: 472px;
+				padding: 0;
+			}
+		}
+	}
 }

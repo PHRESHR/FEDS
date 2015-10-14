@@ -9,7 +9,7 @@
 				<div class="poster" ng-style="{ 'background-image': 'url(' + video.fragments['video.poster'].value.views.column.url +')' }"></div>
 				<md-card-content class="card-info">
 					<h1 class="item-title">
-						<a href="">{{::video.fragments['video.title'].value[0].text}}</a>
+						<a href="/{{::video.fragments['video.channel'].value}}/{{::video.id}}/{{::video.slug}}">{{::video.fragments['video.title'].value[0].text}}</a>
 					</h1>
 					<p class="item-intro">
 						{{::video.fragments['video.shortlede'].value[0].text | characters:80: false}}

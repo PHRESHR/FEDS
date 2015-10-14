@@ -1,33 +1,6 @@
 <main ng-if="vm.activated">
 	<featured-video></featured-video>
-	<section>
-		<div class="items" layout="row" layout-align="space-between center" layout-wrap>
-
-			<md-card class="item" flex="100" flex-gt-md="50" flex-gt-lg="33" ng-repeat="video in ::vm.results track by video.id">
-
-				<div class="item-wrapper">
-					<div class="poster" ng-style="{ 'background-image': 'url(' + video.fragments['video.poster'].value.views.column.url +')' }"></div>
-					<!-- <img ng-src="{{video.fragments['video.poster'].value.views.column.url}}"  class="poster"> -->
-					<md-card-content class="card-info">
-						<h5 class="item-channel {{::video.fragments['video.channel'].value}}">
-							<a href="/{{::video.fragments['video.channel'].value}}">{{::video.fragments['video.channel'].value}}</a>
-						</h5>
-					  <h1 class="item-title">
-							<a href="">{{::video.fragments['video.title'].value[0].text}}</a>
-						</h1>
-						<p class="item-intro">
-							{{::video.fragments['video.shortlede'].value[0].text | characters:80: false}}
-						</p>
-						<!-- <a href="" class="item-link"></a> -->
-					</md-card-content>
-					<!-- <item-widgets></item-widgets> -->
-				</div>
-
-			</md-card>
-
-		</div>
-	</section>
-	<!-- <videolist></videolist> -->
+	<videolist></videolist>
 </main>
 <div ng-if="!vm.activated">
 	<div class="loader">

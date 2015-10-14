@@ -257,7 +257,7 @@ featured-video .featured-video .videogular-container {}
 @media (min-width: 1200px) {
 			featured-video .featured-video .videogular-container {
 		position: relative;
-		height: calc(100vh - 125px);
+		height: calc(100vh - 160px);
 		padding: 0;
 	}
 			}

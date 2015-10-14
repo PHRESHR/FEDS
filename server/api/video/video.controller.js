@@ -42,13 +42,13 @@ export const featured = prismic.route((req, res, ctx) => {
 
 // Get channel: Docu-Series
 export const docuseries = prismic.route((req, res, ctx) => {
-  ctx.api.form('everything')
+  ctx.api.form('docu-series')
   .set('page', req.params['pagenum'] || '1')
   .ref(ctx.ref)
   .query(
     Prismic.Predicates.at('document.type', 'video'),
     // Prismic.Predicates.any('document.tags', ['Docu-Series'])
-    Prismic.Predicates.any('my.video.channel', ['docu-series'])
+    // Prismic.Predicates.any('my.video.channel', ['docu-series'])
   )
   .pageSize(21)
   .submit((err, videos) => {
@@ -129,7 +129,10 @@ export const detail = prismic.route((req, res, ctx) => {
   prismic.getDocument(ctx, id, slug,
     (err, doc) => {
       if (err) { prismic.onPrismicError(err, req, res); return; }
-      res.status(200).json(doc);
+      // console.log(doc);
+      const html = doc.getStructuredText('video.content').asHtml();
+      // console.log(html);
+      res.status(200).json([doc, html]);
     },
     (doc) => {
       res.redirect(301, ctx.linkResolver(doc));

@@ -37,11 +37,10 @@ class VideosService {
       .catch(err => LOG.get(this).log(err));
   }
 
-  // getAllVideos() {
-  //   return this.$http.get(`${this.apiHost}/video`);
-  // }
   getVideo(id) {
-    return this.$http.get(`${this.apiHost}/video/${id}`);
+    return HTTP.get(this).get(`${this.apiHost}/video/${id}`)
+      .then(results => results.data )
+      .catch(err => LOG.get(this).log(err));
   }
 }
 
